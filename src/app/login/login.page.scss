@@ -1,0 +1,24 @@
+.logo-container{
+  height: 40%;
+}
+
+.input-container{
+  width: 250px;
+  margin: 0 15%;
+  border: 1px solid rgba(0,0,0, 0.4);
+  border-radius: 8px;
+}
+
+.button-container{
+  height: 25%;
+}
+
+.button-container ion-button{
+  margin: 15px 0 0 15%;
+  width: 250px;
+  --border-radius: 50px;
+}
+
+.account-container{
+  text-align: center;
+}
