@@ -1,28 +1,21 @@
-.logo-container{
-  margin: 25% 0;
+.logo-container {
+  margin: 80px 0;
 }
 
-.logo-container h1{
+.logo-container h1 {
   margin: 0 5%;
 }
 
 .form-container {
-  margin: 10% 0;
+  padding: 15px 0;
 }
 
-.form-container ion-item{
+.form-container ion-item {
   margin: 0 5%;
   width: 90%;
 }
 
-.button-container ion-button{
-  margin: 0 5%;
-  width: 90%;
+.button-container ion-button {
   height: 55px;
   --border-radius: 50px;
-}
-
-.login-container {
-  margin: 20% 0 0 0;
-  text-align: center;
 }

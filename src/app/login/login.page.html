@@ -1,20 +1,27 @@
 <ion-content>
-  <div class="logo-container">
-      <ion-img [src]="teste"></ion-img>
-  </div>
 
-  <div class="input-container">
-    <ion-input placeholder=" Email Address"></ion-input>
-    <ion-input placeholder=" Password"></ion-input>
-  </div>
 
-  <div class="button-container">
-    <ion-button expand="block" (click)="logar()">Log in</ion-button>
-  </div>
+  <ion-grid fixed>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="9">
+          <div class="logo-container">
+              <img src="../../assets/img/zed.png" alt="zed">
+          </div>
 
-  <div class="account-container">
-    <p>Don't have an account?</p>
-    <a href="register" >Sing-Up</a>
-  </div>
+          <div padding class="input-container">
+              <ion-input placeholder=" Email Address"></ion-input>
+              <ion-input placeholder=" Password "></ion-input>
+          </div>
+            
+          <div class="button-container">
+            <ion-button expand="block" (click)="logar()">Log in</ion-button>
+          </div>
 
+          <div class="account-container" text-center>
+            <p>Don't have an account?</p>
+            <a href="register">Sing-Up</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 </ion-content>

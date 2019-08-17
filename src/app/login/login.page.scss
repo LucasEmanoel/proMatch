@@ -1,24 +1,26 @@
 .logo-container{
-  height: 40%;
+  overflow: hidden;
+  height: 250px;
+}
+.logo-container img{
+  width: 95%;
+  height: 100%;
+  transform: scale(0.6);
 }
 
 .input-container{
-  width: 250px;
-  margin: 0 15%;
   border: 1px solid rgba(0,0,0, 0.4);
   border-radius: 8px;
 }
 
-.button-container{
-  height: 25%;
+.button-container {
+  padding: 20px;
 }
 
 .button-container ion-button{
-  margin: 15px 0 0 15%;
-  width: 250px;
   --border-radius: 50px;
 }
 
-.account-container{
-  text-align: center;
+.account-container {
+  margin: 30% 0 0 0;
 }

@@ -1,31 +1,36 @@
 <ion-content>
-  <div class="logo-container">
-    <h1>Create</h1>
-    <h1>an account</h1>
-  </div>
-  <div class="form-container">
-    <ion-item>
-      <ion-label position="stacked">Name</ion-label>
-      <ion-input required type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input required type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Password</ion-label>
-      <ion-input required type="text"></ion-input>
-    </ion-item>
-  </div>
-
-  <div class="button-container">
-    <ion-button expand="block" (click)="logar()">Sing up</ion-button>
-  </div>
-
-  <div class="login-container">
-    <p>Already have an account?<a href="login" > Sing In</a></p>
-    
-  </div>
+    <ion-grid fixed>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="13">
+            <div class="logo-container">
+              <h1>Create</h1>
+              <h1>an account</h1>
+            </div>
+            <div class="form-container">
+              <ion-item>
+                <ion-label position="stacked">Name</ion-label>
+                <ion-input required type="text"></ion-input>
+              </ion-item>
+            
+              <ion-item>
+                <ion-label position="stacked">Email</ion-label>
+                <ion-input required type="text"></ion-input>
+              </ion-item>
+            
+              <ion-item>
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input required type="text"></ion-input>
+              </ion-item>
+            </div>
+            
+            <div padding class="button-container">
+              <ion-button expand="block" (click)="logar()">Sing up</ion-button>
+            </div>
+            
+            <div padding text-center class="login-container">
+              <p>Already have an account?<a href="login" > Sing In</a></p>  
+            </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
 </ion-content>
