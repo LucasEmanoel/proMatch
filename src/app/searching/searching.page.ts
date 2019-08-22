@@ -6,11 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./searching.page.scss'],
 })
 export class SearchingPage implements OnInit {
-  
-  lanes: string[];
 
   constructor() { 
-    this.lanes = ["TOP", "MID", "JG", "ADC", "SUP"];
   }
 
   ngOnInit() {

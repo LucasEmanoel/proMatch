@@ -1,20 +1,10 @@
-.lanes-container{
-  margin: 40% 0;
-}
-.lanes-container ion-col{
-  max-width: 50px !important;
-}
-.lanes {
-  text-align: center;
+ion-buttons {
+  order: 1;
 }
 
-.lanes-container ion-checkbox{
-  transform: scale(2);
-  --border-radius: 25px;
-}
 
 .icon-container {
-  margin: 20% 0;
+  margin: 50% 0;
   text-align: center;
 }
 .icon-container img{
