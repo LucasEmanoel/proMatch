@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   }
 
   async logar(){
-    this.router.navigate(['home']);
+    this.router.navigate(['tabs/home']);
   }
 
 }

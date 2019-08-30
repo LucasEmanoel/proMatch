@@ -10,7 +10,4 @@ export class HomePage {
 
   constructor( private router: Router ) {}
 
-  goToExplore(){
-    this.router.navigate(['searching']);
-  }
 }
