@@ -6,25 +6,21 @@
               <h1>Create</h1>
               <h1>an account</h1>
             </div>
+
             <div class="form-container">
               <ion-item>
-                <ion-label position="stacked">Name</ion-label>
-                <ion-input required type="text"></ion-input>
-              </ion-item>
-            
-              <ion-item>
                 <ion-label position="stacked">Email</ion-label>
-                <ion-input required type="text"></ion-input>
+                <ion-input [(ngModel)]="email" required type="text"></ion-input>
               </ion-item>
             
               <ion-item>
                 <ion-label position="stacked">Password</ion-label>
-                <ion-input required type="text"></ion-input>
+                <ion-input [(ngModel)]="password" required type="password"></ion-input>
               </ion-item>
             </div>
             
             <div padding class="button-container">
-              <ion-button color="danger" expand="block" (click)="logar()">Sing up</ion-button>
+              <ion-button color="danger" expand="block" (click)="register()">Sing up</ion-button>
             </div>
             
             <div padding text-center class="login-container">

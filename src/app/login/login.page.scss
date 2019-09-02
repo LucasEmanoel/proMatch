@@ -13,14 +13,15 @@
   border-radius: 8px;
 }
 
-.button-container {
-  padding: 20px;
-}
-
 .button-container ion-button{
   --border-radius: 50px;
 }
 
 .account-container {
   margin: 30% 0 0 0;
+}
+
+.forgot-container {
+  padding: 15px 0;
+  font-size: 17px;
 }

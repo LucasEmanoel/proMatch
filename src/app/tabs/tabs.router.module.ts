@@ -26,6 +26,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'matches',
+        children: [
+          {
+            path: '',
+            loadChildren: '../matches/matches.module#MatchesPageModule'
+
+          }
+        ]
+      },
+      {
         path: 'profile',
         children: [
           {
