@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>edit profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="backLogin()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="backLogin()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid fixed>
+        <ion-row justify-content-center>
+          <ion-col align-self-center size-md="12" size-lg="12" size-xs="13">
+
+              <div class="logo-container">
+                  <ion-avatar>
+                    <img src="../../assets/img/nitendo.jpg" alt="" srcset="">
+                  </ion-avatar>
+                  <a href="">
+                    <p style="text-align: center;">change photo</p>
+                  </a>
+              </div>
+
+              <div padding class="input-container">
+                <ion-item>
+                  <ion-label position="stacked">Name</ion-label>
+                  <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="stacked">Game</ion-label>
+                  <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="stacked">Description</ion-label>
+                  <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+                </ion-item>
+              </div>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+</ion-content>

@@ -10,4 +10,7 @@ export class HomePage {
 
   constructor( private router: Router ) {}
 
+  findingPeaple(){
+    this.router.navigate['tabs/searching'];
+  }
 }

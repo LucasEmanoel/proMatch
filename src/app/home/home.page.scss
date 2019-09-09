@@ -7,4 +7,15 @@ img {
 h2 {
   margin: 3% 0 0 5%; 
 }
+.platforms-container img{
+  height: 100px;
+  widows: 100px;
+}
+
+.platforms-container ion-segment-button{
+  --border-color: none;
+  --border-width: 0;
+  margin:10px;
+}
+
 
