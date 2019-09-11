@@ -13,4 +13,8 @@ export class HomePage {
   findingPeaple(){
     this.router.navigate['tabs/searching'];
   }
+  
+  goToMatches(){
+    this.router.navigate['tabs/matches'];
+  }
 }

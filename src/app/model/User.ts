@@ -1,5 +1,5 @@
 export class User {
-  id: string;
+  uid: string;
   name: string;
   game: string;
   matchs: User[];

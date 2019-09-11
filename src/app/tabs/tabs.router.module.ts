@@ -41,7 +41,8 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../profile/profile.module#ProfilePageModule'
-          }
+          },
+          
         ]
       },
       {

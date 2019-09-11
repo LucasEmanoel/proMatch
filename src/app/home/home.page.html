@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Home</ion-title>
     <ion-buttons slot="end">
-      <ion-button >
+      <ion-button (click)="goToMatches()">
           <ion-icon style="zoom:1.5;" name="heart" slot="end"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -12,34 +12,34 @@
 <ion-content>
   
   <div class="first-view-container">
-    <h2>Find your duo</h2>
-    <a href="tabs/searching">
+    <h2>Encontre Amigos</h2>
+    <a href="searching-swipeable">
       <img src="../../assets/img/teste.jpg" alt="">
     </a>
   </div>
 
   <div class="platforms-container">
-    <h2>for all gamers</h2>
+    <h2>Para todas plataformas</h2>
     <ion-grid>
         <ion-row >
           <ion-col>
             <ion-segment scrollable>
-              <ion-segment-button disabled>
+              <ion-segment-button>
                 <div>
                   <img src="../../assets/img/pc.jpg" alt="">
                 </div>
               </ion-segment-button>
-              <ion-segment-button disabled>
+              <ion-segment-button >
                 <div>
                   <img src="../../assets/img/phone.jpg" alt="">
                 </div>
               </ion-segment-button>
-              <ion-segment-button disabled>
+              <ion-segment-button >
                 <div>
                   <img src="../../assets/img/play.jpg" alt="" >
                 </div>
               </ion-segment-button>
-              <ion-segment-button disabled>
+              <ion-segment-button >
                   <div>
                     <img src="../../assets/img/nitendo.jpg" alt="" >
                   </div>
@@ -47,21 +47,21 @@
             </ion-segment>
           </ion-col>
         </ion-row>
-        <h2>for all players</h2>
+        <h2>Para todos players</h2>
         <ion-row >
             <ion-col>
               <ion-segment scrollable>
-                <ion-segment-button disabled>
+                <ion-segment-button >
                   <div>
                     <img src="../../assets/img/pc.jpg" alt="">
                   </div>
                 </ion-segment-button>
-                <ion-segment-button disabled>
+                <ion-segment-button >
                   <div>
                     <img src="../../assets/img/phone.jpg" alt="">
                   </div>
                 </ion-segment-button>
-                <ion-segment-button disabled>
+                <ion-segment-button >
                   <div>
                     <img src="../../assets/img/play.jpg" alt="" >
                   </div>
