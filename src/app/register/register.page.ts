@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { DbService } from '../service/db.service';
+import { User } from '../model/User';
 
 @Component({
   selector: 'app-register',
@@ -9,38 +9,27 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+  user: User;
 
-  email: string;
-  password: string;
-
-  constructor( 
-    private router: Router,
-    private afAuth: AngularFireAuth,
-    public toastController: ToastController) { }
+  constructor(private dbService: DbService, private router: Router) {
+    this.user = new User();
+  }
 
   ngOnInit() {
   }
 
-  register(){
-    this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password)
-      .then(result => {
-        this.logar();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-  
-  async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 2000
-    });
-    toast.present();
+  register() {
+    this.dbService.insertInList('usuarios', this.user);
+    this.user = new User();
+    this.logar();
   }
 
   logar() {
     this.router.navigate(['tabs/home']);
+  }
+
+  goToLogin(){
+    this.router.navigate(['login']);
   }
 
 }

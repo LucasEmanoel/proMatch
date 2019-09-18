@@ -1,6 +1,8 @@
 export class User {
   uid: string;
+  email: string;
+  password: string;
   name: string;
   game: string;
-  matchs: User[];
+  matchsUID: string[];
 }

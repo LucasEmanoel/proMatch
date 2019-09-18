@@ -1,10 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>edit profile</ion-title>
+    <ion-title>Editar Perfil</ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="backProfile()">
-        <ion-icon name="arrow-round-back"></ion-icon>
-      </ion-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="save()">
@@ -24,22 +22,22 @@
                     <img src="../../assets/img/nitendo.jpg" alt="" srcset="">
                   </ion-avatar>
                   <a href="">
-                    <p style="text-align: center;">change photo</p>
+                    <p style="text-align: center;">Mudar Foto</p>
                   </a>
               </div>
 
               <div padding class="input-container">
                 <ion-item>
                   <ion-label position="stacked">Name</ion-label>
-                  <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+                  <ion-input required type="text"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="stacked">Game</ion-label>
-                  <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+                  <ion-input required type="text"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label position="stacked">Description</ion-label>
-                  <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+                  <ion-input required type="text"></ion-input>
                 </ion-item>
               </div>
 

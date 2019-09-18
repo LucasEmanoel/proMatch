@@ -12,4 +12,26 @@ export class SearchingSwipeablePage implements OnInit {
   ngOnInit() {
   }
 
+  swipeLeft(event: any): any {
+    console.log('Swipe Left', event);
+  }
+
+  swipeRight(event: any): any {
+    console.log('Swipe Right', event);
+  }
+
+  cardSwipe(){
+
+  }
+  cardDestroyed(){
+
+  }
+
+  like(){
+
+  }
+
+  dislike(){
+    
+  }
 }

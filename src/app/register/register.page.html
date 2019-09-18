@@ -11,17 +11,17 @@
 
           <ion-item>
             <ion-label position="stacked">Username</ion-label>
-            <ion-input [(ngModel)]="email" required type="text"></ion-input>
+            <ion-input [(ngModel)]="user.name" required type="text"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Email</ion-label>
-            <ion-input [(ngModel)]="email" required type="text"></ion-input>
+            <ion-input [(ngModel)]="user.email" required type="text"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Senha</ion-label>
-            <ion-input [(ngModel)]="password" required type="password"></ion-input>
+            <ion-input [(ngModel)]="user.password" required type="password"></ion-input>
           </ion-item>
         </div>
 
@@ -30,7 +30,7 @@
         </div>
 
         <div padding text-center class="login-container">
-          <p>Já possui uma conta?<a style="color: red" href="login"> Logar</a></p>
+          <p>Já possui uma conta?<a (click)="goToLogin()" style="color: red" > Logar</a></p>
         </div>
       </ion-col>
     </ion-row>

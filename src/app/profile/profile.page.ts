@@ -14,7 +14,6 @@ export class ProfilePage implements OnInit {
   }
 
   editProfile(){
-    console.log('chama carai');
     this.router.navigate(['profile-edit']);
   }
 

@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 export class HomePage {
 
   constructor( private router: Router ) {}
-
-  findingPeaple(){
-    this.router.navigate['tabs/searching'];
-  }
   
   goToMatches(){
-    this.router.navigate['tabs/matches'];
+    this.router.navigate(['tabs/matches']);
+  }
+
+  goToSearchSwipe(){
+    this.router.navigate(['searching-swipeable']);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-searching',
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchingPage implements OnInit {
 
-  constructor() { 
+  constructor(private router: Router) { 
   }
 
   ngOnInit() {
   }
 
+  goToSearchingSwipe(){
+    this.router.navigate(['searching-swipeable']);
+  }
 }

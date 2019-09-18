@@ -1,21 +1,29 @@
-<ion-content>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content>
   <ion-grid style="height: 100%">
     <ion-row justify-content-center align-items-center style="height: 100%;">
-      <ion-card>
+      <ion-card swipeAll (swipeleft)="swipeLeft($event)" (swiperight)="swipeRight($event)">
         <img src="../../assets/img/pc.jpg" />
         <ion-card-header>
           <ion-card-title>nome, game que joga</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
-          Wisconsin Territory in 1836.
+          dsadsadsadsadsadsadasdasgasj asfjkasn fjk as bashbfsajf
+          khfasbfjsafibsafasnkj asfjksakf jkfa
+          fsahlf n asbfasnfl vj nsahbfkasfasjkf
         </ion-card-content>
       </ion-card>
 
       <div class="buttons-container">
-          <ion-icon name="close" color="primary"></ion-icon>
-          <ion-icon name="heart" color="success"></ion-icon>
+        <ion-icon name="close" color="primary"></ion-icon>
+        <ion-icon name="heart" color="success"></ion-icon>
       </div>
     </ion-row>
   </ion-grid>

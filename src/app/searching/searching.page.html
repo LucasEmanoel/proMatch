@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-      <ion-title end>Finding</ion-title>
+      <ion-title end>Procurar</ion-title>
       <ion-buttons slot="secondary">
       </ion-buttons>  
   </ion-toolbar>
@@ -8,8 +8,9 @@
 
 <ion-content>
   <div class="icon-container">
-    <a href="searching-swipeable">
-      <img src="../../assets/img/game-controller.png" class="animated infinite pulse delay-2s" alt="search">
+    <a (click)="goToSearchingSwipe()">
+      <img src="../../assets/img/game-controller.png" 
+      class="animated infinite pulse delay-2s" alt="search">
     </a>
     <p>Buscar!!</p>
   </div>

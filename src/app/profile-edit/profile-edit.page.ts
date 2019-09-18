@@ -12,9 +12,4 @@ export class ProfileEditPage implements OnInit {
 
   ngOnInit() {
   }
-
-  backProfile(){
-    this.router.navigate(['tabs/profile']);
-  }
-
 }

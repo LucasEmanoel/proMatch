@@ -10,22 +10,22 @@
 
         <ion-card id="login-card">
           <div padding class="input-container">
-            <ion-input placeholder=" Email Address"></ion-input>
-            <ion-input placeholder=" Senha "></ion-input>
+            <ion-input [(ngModel)]="email" placeholder=" Email Address"></ion-input>
+            <ion-input [(ngModel)]="password" placeholder=" Senha " type="password"></ion-input>
           </div>
         </ion-card>
 
         <div class="forgot-container">
-          <a href="forgot-password">Esqueceu a senha?</a>
+          <a (click)="forgotPassword()">Esqueceu a senha?</a>
         </div>
 
         <div class="button-container">
-          <ion-button color="danger" expand="block" (click)="logar()">Entrar</ion-button>
+          <ion-button [disabled]="!email || !password" color="danger" expand="block" (click)="logar()">Entrar</ion-button>
         </div>
 
         <div class="account-container" text-center>
           <p>Não tem conta ainda?</p>
-          <a style="color: red" href="register">Cadastre-se</a>
+          <a (click)="goToRegister()" style="color: red" >Cadastre-se</a>
         </div>
       </ion-col>
     </ion-row>

@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DbService } from './service/db.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { IonicSwipeAllModule } from 'ionic-swipe-all';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    IonicSwipeAllModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
