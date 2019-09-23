@@ -1,26 +1,26 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header no-border>
+  <ion-toolbar transparent>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
   <ion-grid style="height: 100%">
-    <ion-row justify-content-center align-items-center style="height: 100%;">
-      <ion-card swipeAll (swipeleft)="swipeLeft($event)" (swiperight)="swipeRight($event)">
+    <ion-row justify-content-center align-items-center style="height: 80%">
+      <ion-card *ngFor="let user of usuarios" swipeAll (swipeleft)="swipeLeft($event)"
+        (swiperight)="swipeRight($event)">
         <img src="../../assets/img/pc.jpg" />
         <ion-card-header>
-          <ion-card-title>nome, game que joga</ion-card-title>
+          <ion-card-title>{{user.name}}, {{user.game}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          dsadsadsadsadsadsadasdasgasj asfjkasn fjk as bashbfsajf
-          khfasbfjsafibsafasnkj asfjksakf jkfa
-          fsahlf n asbfasnfl vj nsahbfkasfasjkf
+          {{user.description}}
         </ion-card-content>
       </ion-card>
-
+    </ion-row>
+    <ion-row justify-content-center align-items-center>
       <div class="buttons-container">
         <ion-icon name="close" color="primary"></ion-icon>
         <ion-icon name="heart" color="success"></ion-icon>

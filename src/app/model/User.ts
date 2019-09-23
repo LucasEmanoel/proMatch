@@ -4,5 +4,6 @@ export class User {
   password: string;
   name: string;
   game: string;
+  description: string;
   matchsUID: string[];
 }

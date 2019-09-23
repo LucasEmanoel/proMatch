@@ -12,4 +12,8 @@ export class ProfileEditPage implements OnInit {
 
   ngOnInit() {
   }
+
+  changePhoto(){
+    alert('nao sei ainda')
+  }
 }

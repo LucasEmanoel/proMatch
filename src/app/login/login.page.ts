@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  async logar(){
+  logar(){
     this.authService.login(this.email, this.password)
       .then(() => {
         this.router.navigate(['tabs/home']);
@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  forgotPassword(){
+  goToForgotPassword(){
     this.router.navigate(['forgot-password']);
   }
   goToRegister(){

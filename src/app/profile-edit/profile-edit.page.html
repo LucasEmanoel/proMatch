@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header no-border>
+  <ion-toolbar transparent>
     <ion-title>Editar Perfil</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
     <ion-grid fixed>
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="12" size-lg="12" size-xs="13">
@@ -21,7 +21,7 @@
                   <ion-avatar>
                     <img src="../../assets/img/nitendo.jpg" alt="" srcset="">
                   </ion-avatar>
-                  <a href="">
+                  <a (click)="changePhoto()">
                     <p style="text-align: center;">Mudar Foto</p>
                   </a>
               </div>
