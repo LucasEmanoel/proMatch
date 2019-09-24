@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../service/authentication.service';
+import { DbService } from '../service/db.service';
 
 @Component({
   selector: 'app-matches',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchesPage implements OnInit {
 
-  constructor() { }
+  user: string;
+
+  constructor(private auth: AuthenticationService, private dbService: DbService) {
+    this.getUserAuth();
+    console.log(this.user);
+  }
 
   ngOnInit() {
   }
 
+  async getUserAuth(){
+    this.user = this.auth.getUserAuth(); 
+  }
 }

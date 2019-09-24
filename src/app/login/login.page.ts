@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
         this.presentAlert('E-mail e/ou senha inválido(s).');
       });
 
-    this.router.navigate(['tabs/home']);
+    this.router.navigate(['login']);
   }
 
   async presentAlert(msg: string) {

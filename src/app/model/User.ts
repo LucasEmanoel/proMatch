@@ -5,5 +5,5 @@ export class User {
   name: string;
   game: string;
   description: string;
-  matchsUID: string[];
+  plataforma: string;
 }

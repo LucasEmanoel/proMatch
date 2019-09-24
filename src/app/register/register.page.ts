@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DbService } from '../service/db.service';
 import { User } from '../model/User';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,8 @@ import { User } from '../model/User';
 export class RegisterPage implements OnInit {
   user: User;
 
-  constructor(private dbService: DbService, private router: Router) {
+  constructor(private dbService: DbService, private router: Router,
+     private auth: AuthenticationService) {
     this.user = new User();
   }
 
@@ -19,13 +21,14 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
+    this.auth.register(this.user.email, this.user.password);
     this.dbService.insertInList('usuarios', this.user);
     this.user = new User();
     this.logar();
   }
 
   logar() {
-    this.router.navigate(['tabs/home']);
+    this.router.navigate(['more-info']);
   }
 
   goToLogin(){
