@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { DbService } from '../service/db.service';
 import { User } from '../model/User';
 import { AuthenticationService } from '../service/authentication.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -10,28 +11,49 @@ import { AuthenticationService } from '../service/authentication.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+
   user: User;
 
   constructor(private dbService: DbService, private router: Router,
-     private auth: AuthenticationService) {
+    private auth: AuthenticationService, private alertController: AlertController) {
     this.user = new User();
   }
 
   ngOnInit() {
   }
 
-  register() {
-    this.auth.register(this.user.email, this.user.password);
-    this.dbService.insertInList('usuarios', this.user);
+  async register() {
+    await this.auth.register(this.user.email, this.user.password)
+    .then(() => {
+      this.goToMoreInfo();
+    })
+    .catch(error => {
+      console.log(error);
+      this.presentAlert('Este E-mail já está em uso. Tente outro.');
+    });
+    
+  }
+
+  goToMoreInfo() {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        special: JSON.stringify(this.user)
+      }
+    }
+    this.router.navigate(['more-info'], navigationExtras);
     this.user = new User();
-    this.logar();
   }
 
-  logar() {
-    this.router.navigate(['more-info']);
-  }
+  async presentAlert(msg: string) {
+    const alert = await this.alertController.create({
+      header: 'Login',
+      message: msg,
+      buttons: ['OK']
+    });
 
-  goToLogin(){
+    await alert.present();
+  }
+  goToLogin() {
     this.router.navigate(['login']);
   }
 

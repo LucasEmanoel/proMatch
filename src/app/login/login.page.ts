@@ -29,8 +29,6 @@ export class LoginPage implements OnInit {
         console.log(error);
         this.presentAlert('E-mail e/ou senha inválido(s).');
       });
-
-    this.router.navigate(['login']);
   }
 
   async presentAlert(msg: string) {

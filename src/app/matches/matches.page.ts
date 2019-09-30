@@ -9,17 +9,9 @@ import { DbService } from '../service/db.service';
 })
 export class MatchesPage implements OnInit {
 
-  user: string;
-
-  constructor(private auth: AuthenticationService, private dbService: DbService) {
-    this.getUserAuth();
-    console.log(this.user);
-  }
+  constructor(private auth: AuthenticationService, private dbService: DbService) {}
 
   ngOnInit() {
   }
-
-  async getUserAuth(){
-    this.user = this.auth.getUserAuth(); 
-  }
+  
 }

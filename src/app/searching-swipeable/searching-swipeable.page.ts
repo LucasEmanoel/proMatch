@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DbService } from '../service/db.service';
 import { User } from '../model/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-searching-swipeable',
@@ -12,13 +13,15 @@ export class SearchingSwipeablePage implements OnInit {
 
   private usuarios : User[];
 
-  constructor(private dbService : DbService) { 
+  constructor(private dbService : DbService, private router: Router) { 
     this.getUsers();
   }
 
   ngOnInit() {
   }
-
+  backFinding(){
+    this.router.navigate(['tabs/searching'])
+  }
   async getUsers(){
     this.usuarios = await this.dbService.listWithUIDs<User>('usuarios');
   }

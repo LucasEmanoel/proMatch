@@ -7,99 +7,118 @@ import { Observable } from 'rxjs';
 })
 export class DbService {
 
-
   constructor(public db: AngularFireDatabase) { }
 
-  listAndWatch<Type>(path: string): Observable<Type[]> {
-    return this.db.list<Type>(path).valueChanges();
+  listAndWatch<Type>(entity: string): Observable<Type[]> {
+      return this.db.list<Type>(`/${entity}`).valueChanges();
   }
 
-  list<Type>(path: string): Promise<Type[]> {
-    return new Promise<Type[]>((resolve, reject) => {
-      this.db.list<Type>(path)
-        .valueChanges()
-        .subscribe(
-          result => resolve(result),
-          error => reject(error)
-        );
-    });
+  list<Type>(entity: string): Promise<Type[]> {
+      return new Promise<Type[]>((resolve, reject) => {
+          this.db.list<Type>(`/${entity}`)
+              .valueChanges()
+              .subscribe(
+                  result => resolve(result),
+                  error => reject(error)
+              );
+      });
   }
 
-  search<Type>(path: string, filterProperty: string, filterValue: any): Promise<Type[]> {
-    return new Promise<Type[]>((resolve, reject) => {
-      this.db.list<Type>(path, ref => ref.orderByChild(filterProperty).equalTo(filterValue))
-        .snapshotChanges()
-        .subscribe(
-          items => {
-            const typedItems: Type[] = [];
+  search<Type>(entity: string, filterProperty: string, filterValue: any): Promise<Type[]> {
+      return new Promise<Type[]>((resolve, reject) => {
+          this.db.list<Type>(`/${entity}`, ref => ref.orderByChild(filterProperty).equalTo(filterValue))
+              .snapshotChanges()
+              .subscribe(
+                  items => {
+                      const typedItems: Type[] = [];
 
-            items.forEach(item => {
-              const typedItem: Type = item.payload.val();
-              typedItem['uid'] = item.key;
-              typedItems.push(typedItem);
-            });
+                      items.forEach(item => {
+                          const typedItem: Type = item.payload.val();
+                          typedItem['uid'] = item.key;
+                          typedItems.push(typedItem);
+                      });
 
-            resolve(typedItems);
-          },
-          error => reject(error)
-        );
-    });
+                      resolve(typedItems);
+                  },
+                  error => reject(error)
+              );
+      });
   }
 
-  listWithUIDs<Type>(path: string): Promise<Type[]> {
-    return new Promise<Type[]>((resolve, reject) => {
-      this.db.list<Type>(path)
-        .snapshotChanges()
-        .subscribe(
-          items => {
-            const typedItems: Type[] = [];
-
-            items.forEach(item => {
-              const typedItem: Type = item.payload.val();
-              typedItem['uid'] = item.key;
-              typedItems.push(typedItem);
-            });
-
-            resolve(typedItems);
-          },
-          error => reject(error)
-        );
-    });
+  listByKey<Type>(entity: string, uid: string): Promise<Type[]> {
+      return this.list<Type>(`/${entity}/${uid}`);
   }
 
-  getObject<Type>(path: string): Promise<Type> {
-    return new Promise<Type>((resolve, reject) => {
-      this.db.object<Type>(path)
-        .valueChanges()
-        .subscribe(
-          result => resolve(result),
-          error => reject(error)
-        );
-    });
+  listWithUIDs<Type>(entity: string): Promise<Type[]> {
+      return new Promise<Type[]>((resolve, reject) => {
+          this.db.list<Type>(`/${entity}`)
+              .snapshotChanges()
+              .subscribe(
+                  items => {
+                      const typedItems: Type[] = [];
+
+                      items.forEach(item => {
+                          const typedItem: Type = item.payload.val();
+                          typedItem['uid'] = item.key;
+                          typedItems.push(typedItem);
+                      });
+
+                      resolve(typedItems);
+                  },
+                  error => reject(error)
+              );
+      });
   }
 
-  getObjectAndWatch<Type>(path: string): Observable<Type> {
-    return this.db.object<Type>(path).valueChanges();
+  getObject<Type>(entity: string): Promise<Type> {
+      return new Promise<Type>((resolve, reject) => {
+          this.db.object<Type>(`/${entity}`)
+              .valueChanges()
+              .subscribe(
+                  result => resolve(result),
+                  error => reject(error)
+              );
+      });
   }
 
-  insert<Type>(path: string, object: Type): Promise<void> {
-    return this.db.object<Type>(path)
-      .set(object);
+  getObjectByKey<Type>(entity: string, uid: string): Promise<Type> {
+      return new Promise<Type>((resolve, reject) => {
+          this.getObject<Type>(`/${entity}/${uid}`)
+              .then(object => {
+                  if (object) {
+                      object['uid'] = uid;
+                  }
+                  resolve(object);
+              }).catch(error => reject(error));
+      });
   }
 
-  insertInList<Type>(path: string, object: Type): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      this.db.list<Type>(path)
-        .push(object)
-        .then(item => resolve(item.key));
-    });
+  getObjectAndWatch<Type>(entity: string): Observable<Type> {
+      return this.db.object<Type>(`/${entity}`).valueChanges();
   }
 
-  update(path: string, object): Promise<void> {
-    return this.db.object(path).update(object);
+  insert<Type>(entity: string, object: Type): Promise<void> {
+      return this.db.object<Type>(`/${entity}`)
+          .set(object);
   }
 
-  remove(path: string, uid: string): Promise<void> {
-    return this.db.object(path + '/' + uid).remove();
+  insertInList<Type>(entity: string, object: Type): Promise<string> {
+      return new Promise<string>((resolve, reject) => {
+          this.db.list<Type>(`/${entity}`)
+              .push(object)
+              .then(item => resolve(item.key));
+      });
+  }
+
+  update(entity: string, uid: string, object): Promise<void> {
+      return this.db.object(`/${entity}/${uid}`).update(object);
+  }
+
+  updateList(entity: string, uid: string, object): Promise<void> {
+      return this.db.object(`/${entity}/${uid}`).set(object);
+  }
+
+  remove(entity: string, uid: string): Promise<void> {
+      return this.db.object(`/${entity}/${uid}`).remove();
   }
 }

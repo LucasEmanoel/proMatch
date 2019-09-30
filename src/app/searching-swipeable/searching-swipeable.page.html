@@ -13,9 +13,11 @@
         (swiperight)="swipeRight($event)">
         <img src="../../assets/img/pc.jpg" />
         <ion-card-header>
-          <ion-card-title>{{user.name}}, {{user.game}}</ion-card-title>
+          <ion-card-title>{{user.name}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
+          Jogo em : {{user.plataforma}}, game : {{user.game}} 
+          <br><br>
           {{user.description}}
         </ion-card-content>
       </ion-card>

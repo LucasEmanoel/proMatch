@@ -17,7 +17,7 @@
               <ion-list>
                 <ion-item>
                   <ion-label>Plataforma</ion-label>
-                  <ion-select value="pc">
+                  <ion-select value="pc" [(ngModel)]="data.plataforma">
                     <ion-select-option value="pc">PC</ion-select-option>
                     <ion-select-option value="n64">Nintendo</ion-select-option>
                     <ion-select-option value="ps">PlayStation</ion-select-option>
@@ -27,8 +27,8 @@
 
                 <ion-item>
                   <ion-label>Game</ion-label>
-                  <ion-select value="brown">
-                    <ion-select-option value="brown">Brown</ion-select-option>
+                  <ion-select value="mario" [(ngModel)]="data.game">
+                    <ion-select-option value="mario">Super Mario World </ion-select-option>
                   </ion-select>
                 </ion-item>
               </ion-list>
@@ -54,7 +54,7 @@
             <div class="list-container">
               <ion-item>
                 <ion-label position="stacked">Descrição</ion-label>
-                <ion-textarea></ion-textarea>
+                <ion-textarea maxlength="500" rows="10" [(ngModel)]="data.description"></ion-textarea>
               </ion-item>
             </div>
           </ion-col>
