@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
   logar(){
     this.authService.login(this.email, this.password)
       .then(() => {
-        this.router.navigate(['tabs/home']);
+        this.router.navigate(['tabs']);
       })
       .catch(error => {
         console.log(error);
@@ -46,6 +46,9 @@ export class LoginPage implements OnInit {
   }
   goToRegister(){
     this.router.navigate(['register']);
+  }
+  goToRegisterProfile(){
+    this.router.navigate(['register-profile']);
   }
 
 }

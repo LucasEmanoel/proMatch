@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../service/authentication.service';
 import { DbService } from '../service/db.service';
+import { Router } from '@angular/router';
+import { User } from '../model/User';
 
 @Component({
   selector: 'app-matches',
@@ -9,9 +11,19 @@ import { DbService } from '../service/db.service';
 })
 export class MatchesPage implements OnInit {
 
-  constructor(private auth: AuthenticationService, private dbService: DbService) {}
+  consulta: string;
+  user: User;
+
+  constructor(private auth: AuthenticationService, private dbService: DbService) {
+    this.user = new User();
+    this.consulta = this.auth.getUserEmailAuth();
+    this.getDataUserAuthentication();
+  }
 
   ngOnInit() {
   }
-  
+
+  async getDataUserAuthentication() {
+    this.user = (await this.dbService.search<User>('usuarios', 'email', this.consulta))[0];
+  }
 }

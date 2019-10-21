@@ -10,16 +10,16 @@
     <ion-item-sliding>
       <ion-item>
         <ion-avatar slot="start">
-          <img src="./avatar-finn.png">
+          <ion-icon name="person"></ion-icon>
         </ion-avatar>
         <ion-label>
-          <h2>nome do gamer</h2>
-          <h3>game</h3>
+          <h2>{{user.name}}</h2>
+          <h3>{{user.game}}</h3>
         </ion-label>
         <ion-icon name="heart" slot="end" color="primary"></ion-icon>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)">Reject</ion-item-option>
+        <ion-item-option (click)="unread(item)">Rejeitar</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { DbService } from '../service/db.service';
 import { User } from '../model/User';
 import { AuthenticationService } from '../service/authentication.service';
 import { AlertController } from '@ionic/angular';
@@ -13,9 +12,10 @@ import { AlertController } from '@ionic/angular';
 export class RegisterPage implements OnInit {
 
   user: User;
+  password: string;
 
-  constructor(private dbService: DbService, private router: Router,
-    private auth: AuthenticationService, private alertController: AlertController) {
+  constructor(private router: Router, private auth: AuthenticationService,
+    private alertController: AlertController) {
     this.user = new User();
   }
 
@@ -23,7 +23,7 @@ export class RegisterPage implements OnInit {
   }
 
   async register() {
-    await this.auth.register(this.user.email, this.user.password)
+    await this.auth.register(this.user.email, this.password)
     .then(() => {
       this.goToMoreInfo();
     })

@@ -1,21 +1,26 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
-
 /** Ionic CSS Variables **/
-ion-segment-button {
-  --indicator-color: transparent !important;
-  --indicator-color-checked: transparent !important;
-  --color-checked: transparent !important;
-  --color-activated: transparent !important;
-}
+
 
 :root {
+  ion-segment-button {
+    --indicator-color: transparent !important;
+    --indicator-color-checked: transparent !important;
+    --color-checked: transparent !important;
+    --color-activated: transparent !important;
+  }
+  ion-toolbar ion-title{
+    --color: #000;
+    font-size: 20px;
+  }
   --ion-safe-area-top: 5px;
 
-  --ion-background-color: #F5F7FA;
-  --ion-toolbar-background: #F5F7FA;
+  --ion-background-color: #f4f4f8;
+  --ion-toolbar-background: #f4f4f8;
+  
   /** primary **/
-  --ion-color-primary: #f04141;
+  --ion-color-primary: #fe4a49;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;

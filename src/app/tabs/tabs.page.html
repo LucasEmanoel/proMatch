@@ -1,5 +1,5 @@
 <ion-tabs>
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar slot="bottom" *ngIf="!user.isAdmin">
     <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
     </ion-tab-button>
@@ -14,6 +14,18 @@
 
     <ion-tab-button tab="profile">
       <ion-icon name="person"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+  <ion-tab-bar slot="bottom" *ngIf="user.isAdmin">
+    <ion-tab-button tab="users">
+      users
+      <ion-icon name="people"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="games">
+      games
+      <ion-icon name="logo-game-controller-b"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

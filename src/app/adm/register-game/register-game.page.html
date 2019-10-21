@@ -1,0 +1,43 @@
+<ion-header no-border>
+  <ion-toolbar transparent>
+    <ion-title>Registrar Game</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-xs="13">
+        <div class="form-container">
+
+          <ion-item>
+            <ion-label position="stacked">Nome</ion-label>
+            <ion-input [(ngModel)]="game.name" required type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Plataforma</ion-label>
+            <ion-input [(ngModel)]="game.platform" required type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Genero</ion-label>
+            <ion-input [(ngModel)]="game.gender" required type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Descrição</ion-label>
+            <ion-input [(ngModel)]="game.description" required type="text"></ion-input>
+          </ion-item>
+        </div>
+
+        <div padding class="button-container">
+          <ion-button color="primary" expand="block" (click)="register()">Salvar</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

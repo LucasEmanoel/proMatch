@@ -1,9 +1,10 @@
+import { Game } from './Game';
+
 export class User {
   uid: string;
   email: string;
-  password: string;
   name: string;
-  game: string;
+  gameUID: Game;
   description: string;
-  plataforma: string;
+  isAdmin: boolean;
 }

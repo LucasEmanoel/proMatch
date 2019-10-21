@@ -8,6 +8,24 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'users',
+        children: [
+          {
+            path: '',
+            loadChildren: '../adm/users/users.module#UsersPageModule'
+          }
+        ]
+      },
+      {
+        path: 'games',
+        children: [
+          {
+            path: '',
+            loadChildren: '../adm/games/games.module#GamesPageModule'
+          }
+        ]
+      },
+      {
         path: 'home',
         children: [
           {

@@ -5,7 +5,7 @@
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
             <div class="logo-container">
-              <h1>Informe o game que voçê joga!!</h1>
+              <h1>Informe o game  que voçê joga!!</h1>
               <ion-icon slot="end" name="arrow-forward"></ion-icon>
             </div>
 
@@ -15,20 +15,10 @@
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
             <div class="list-container">
               <ion-list>
-                <ion-item>
-                  <ion-label>Plataforma</ion-label>
-                  <ion-select value="pc" [(ngModel)]="data.plataforma">
-                    <ion-select-option value="pc">PC</ion-select-option>
-                    <ion-select-option value="n64">Nintendo</ion-select-option>
-                    <ion-select-option value="ps">PlayStation</ion-select-option>
-                    <ion-select-option value="saturn">X-Box</ion-select-option>
-                  </ion-select>
-                </ion-item>
-
-                <ion-item>
+                <ion-item >
                   <ion-label>Game</ion-label>
-                  <ion-select value="mario" [(ngModel)]="data.game">
-                    <ion-select-option value="mario">Super Mario World </ion-select-option>
+                  <ion-select value="any" [(ngModel)]="data.gameUID">
+                    <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}}</ion-select-option>
                   </ion-select>
                 </ion-item>
               </ion-list>

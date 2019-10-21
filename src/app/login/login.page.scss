@@ -1,6 +1,13 @@
+.icon-container{
+  position: absolute;
+  margin: 10px;
+}
+.icon-container ion-icon{
+  font-size: 25px;
+}
 .logo-container{
   overflow: hidden;
-  height: 250px;
+  height: 230px;
 }
 .logo-container img{
   width: 95%;
@@ -15,7 +22,7 @@
 }
 
 .account-container {
-  margin: 30% 0 0 0;
+  margin: 20% 0 0 0;
 }
 
 .forgot-container {

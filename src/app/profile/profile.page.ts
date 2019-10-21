@@ -11,26 +11,24 @@ import { User } from '../model/User';
 })
 export class ProfilePage implements OnInit {
 
-  users: User[];
+  consulta: string;
   user: User;
-  uid: string;
 
   constructor(private router: Router, private auth: AuthenticationService,
     private dbService: DbService) {
 
     this.user = new User();
-    this.uid = this.auth.getUserAuth();
-    this.getUserAuthentication();
-    
+    this.consulta = this.auth.getUserEmailAuth();
+    this.getDataUserAuthentication(); 
   }
 
-  ngOnInit() { 
+  ngOnInit() {
   }
 
-  async getUserAuthentication() {
-    this.users = await this.dbService.search('usuarios', 'authUID', this.uid);
-    this.user = this.users[0];
+  async getDataUserAuthentication() {
+    this.user = (await this.dbService.search<User>('usuarios', 'email', this.consulta))[0]; 
   }
+  
   editProfile() {
     this.router.navigate(['profile-edit']);
   }

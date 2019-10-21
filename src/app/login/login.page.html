@@ -1,7 +1,19 @@
-<ion-content>
+<ion-header no-border>
+  <ion-toolbar transparent>
+    <ion-buttons slot="start">
+      <ion-button (click)="updateUser()">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content fullscreen>  
   <ion-grid fixed>
     <ion-row justify-content-center>
       <ion-col align-self-center size-xs="9">
+          <div class="mysvgbackground"></div>
         <div class="logo-container">
           <img src="../../assets/img/zed.png" alt="zed">
         </div>
@@ -18,12 +30,13 @@
         </div>
 
         <div class="button-container">
-          <ion-button [disabled]="!email || !password" color="danger" expand="block" (click)="logar()">Entrar</ion-button>
+          <ion-button [disabled]="!email || !password" color="primary" expand="block" (click)="logar()">Entrar
+          </ion-button>
         </div>
 
         <div class="account-container" text-center>
           <p>Não tem conta ainda?</p>
-          <a (click)="goToRegister()" style="color: red" >Cadastre-se</a>
+          <a (click)="goToRegister()" style="color: red">Cadastre-se</a>
         </div>
       </ion-col>
     </ion-row>

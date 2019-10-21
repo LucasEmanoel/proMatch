@@ -5,13 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SearchingSwipeablePage } from './searching-swipeable.page';
-import { SwingModule, SwingCardComponent, SwingStackComponent } from 'angular2-swing';
+import { GamesPage } from './games.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SearchingSwipeablePage
+    component: GamesPage
   }
 ];
 
@@ -20,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    SwingModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SearchingSwipeablePage]
+  declarations: [GamesPage]
 })
-export class SearchingSwipeablePageModule {}
+export class GamesPageModule {}

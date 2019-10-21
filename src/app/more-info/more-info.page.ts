@@ -4,6 +4,7 @@ import { User } from '../model/User';
 import { DbService } from '../service/db.service';
 import { AuthenticationService } from '../service/authentication.service';
 import { ToastController } from '@ionic/angular';
+import { Game } from '../model/Game';
 
 @Component({
   selector: 'app-more-info',
@@ -13,29 +14,22 @@ import { ToastController } from '@ionic/angular';
 export class MoreInfoPage implements OnInit {
 
   data: User;
-  authUID: string;
+  games: Game[];
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private dbService: DbService, private auth: AuthenticationService,
-    public toastController: ToastController) {
-
-    this.data = new User();
-
+    private dbService: DbService, public toastController: ToastController) 
+  {
+    this.games = [];
+    this.data = new User(); 
+    this.getGames();
     this.route.queryParams.subscribe(params => {
       if (params && params.special) {
         this.data = JSON.parse(params.special);
       }
     });
-
-    this.setUid();
   }
 
   ngOnInit() {
-  }
-
-  async setUid(){
-    this.authUID = await this.auth.getUserAuth();
-    this.data['authUID'] = this.authUID;
   }
 
   async presentToast(msg: string) {
@@ -46,6 +40,11 @@ export class MoreInfoPage implements OnInit {
     toast.present();
   }
 
+  async getGames(){
+    this.games = await this.dbService.listWithUIDs<Game>('games');
+    console.log(this.games);
+    
+  }
   goToHome() {
     this.dbService.insertInList('usuarios', this.data)
     .then(() => {
