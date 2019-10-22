@@ -14,16 +14,19 @@ import { DbService } from './service/db.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { IonicSwipeAllModule } from 'ionic-swipe-all';
+import { ProfileEditPage } from './profile-edit/profile-edit.page';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, ProfileEditPage],
+  entryComponents: [ ProfileEditPage ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicSwipeAllModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    FormsModule
   ],
   providers: [
     StatusBar,
@@ -31,7 +34,8 @@ import { IonicSwipeAllModule } from 'ionic-swipe-all';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AngularFireDatabase,
     AngularFireAuth,
-    DbService
+    DbService,
+   
   ],
   bootstrap: [AppComponent]
 })

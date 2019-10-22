@@ -11,7 +11,6 @@ const routes: Routes = [
     path: 'forgot-password', 
     loadChildren: './forgot-password/forgot-password.module#ForgotPasswordPageModule' 
   },
-  { path: 'profile-edit', loadChildren: './profile-edit/profile-edit.module#ProfileEditPageModule' },
   { 
     path: 'searching-swipeable', 
     loadChildren: './searching-swipeable/searching-swipeable.module#SearchingSwipeablePageModule' 

@@ -5,8 +5,8 @@
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
             <div class="logo-container">
-              <h1>Informe o game  que voçê joga!!</h1>
-              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+              <h1>Informe o game que voçê joga!!</h1>
+              <ion-icon slot="end" name="arrow-forward" color="primary"></ion-icon>
             </div>
 
           </ion-col>
@@ -14,14 +14,12 @@
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
             <div class="list-container">
-              <ion-list>
-                <ion-item >
-                  <ion-label>Game</ion-label>
-                  <ion-select value="any" [(ngModel)]="data.gameUID">
-                    <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}}</ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </ion-list>
+              <ion-item>
+                <ion-label>Game</ion-label>
+                <ion-select value="any" [(ngModel)]="data.gameUID">
+                  <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
             </div>
           </ion-col>
         </ion-row>
@@ -35,7 +33,7 @@
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
             <div class="logo-container">
               <h1>Faça uma breve Descricao sobre voçê!!</h1>
-              <ion-icon slot="end" name="arrow-forward"></ion-icon>
+              <ion-icon slot="end" name="arrow-forward" color="primary"></ion-icon>
             </div>
           </ion-col>
         </ion-row>
@@ -54,7 +52,7 @@
     </ion-slide>
 
     <ion-slide>
-      
+
       <ion-grid fixed>
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">

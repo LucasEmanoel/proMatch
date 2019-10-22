@@ -1,9 +1,12 @@
 <ion-header no-border>
   <ion-toolbar transparent>
+    
     <ion-title>Editar Perfil</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+        <ion-button (click)="dismiss()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="updateUser()">
         <ion-icon name="checkmark"></ion-icon>

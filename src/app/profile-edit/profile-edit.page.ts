@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/User';
 import { AuthenticationService } from '../service/authentication.service';
 import { DbService } from '../service/db.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile-edit',
@@ -12,34 +12,37 @@ import { ToastController } from '@ionic/angular';
 })
 export class ProfileEditPage implements OnInit {
 
-  consulta: string;
+
+  @Input()
   user: User;
 
   constructor(private auth: AuthenticationService, private router: Router,
-    private dbService: DbService, public toastController: ToastController) {
+    private dbService: DbService, public toastController: ToastController, private modalCtrl: ModalController) {
 
     this.user = new User();
-    this.consulta = this.auth.getUserEmailAuth();
-    this.getDataUserAuthentication();
   }
 
   ngOnInit() {
   }
 
-  async getDataUserAuthentication() {
-    this.user = (await this.dbService.search<User>('usuarios', 'email', this.consulta))[0];  
-  }
 
   async updateUser() {
     await this.dbService.update('usuarios', this.user.uid, this.user)
       .then(() => {
         this.presentToast("editado com sucesso.")
         this.router.navigate(['tabs/profile']);
+        this.dismiss();
       })
       .catch(error => {
         console.log(error);
         this.presentToast("falha ao editar.")
       });
+  }
+
+  dismiss() {
+    this.modalCtrl.dismiss({
+      'dismissed': true
+    });
   }
 
   changePhoto() {
