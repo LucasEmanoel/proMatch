@@ -1,18 +1,24 @@
-page-home {
-  #card-stack {
-    width: 90%;
-    height: 200px;
-    background: #047915;
-    border: 10px solid #4cb338;
-    margin: 100px auto 0;
-    position: relative;
+ion-card{
+  position: absolute;
+  
+  text-align: center;
+  max-height: 352px;
+  max-width: 80%;
+  border-radius: 8px;
+  --background: #f4f4f8;
+  ion-card-header{
+    padding: 5px;
   }
- 
-  #card-stack ion-card{
-    border-radius: 5px;
-    position: absolute;
-    text-align: center;
-    top: 3%;
-    height: 90%;
-  }
+}
+ion-list {
+  overflow: hidden;
+  overflow-y: auto;
+  
+}
+.icon-container {
+  width: 100%;
+  text-align: center;
+}
+.icon-container ion-icon {
+  font-size: 50px;
 }

@@ -9,16 +9,16 @@
     </ion-fab-button>
   </ion-fab>
 
-  <div class="info-container">
+  <div class="info-container" *ngIf="userAuth.game">
     <ion-row>
       <ion-col size="12">
         <ion-item>
-          <ion-label class="ion-text-wrap">
+          <ion-label class="ion-text-wrap" >
             <ion-text color="medium">
               <h3>Informações pessoais: </h3>
             </ion-text>
-            <h2>{{user.name}}, {{user.game}}</h2>
-            <h5>{{user.plataforma}}</h5>
+            <h2>{{userAuth.name}}, game : {{userAuth.game.name}}</h2>
+            <h5>plataforma : {{userAuth.game.platform}}</h5>
           </ion-label>
         </ion-item>
       </ion-col>
@@ -31,7 +31,7 @@
               <ion-text color="medium">
                 <h3>Descrição: </h3>
               </ion-text>
-              <h2>{{user.description}}</h2>
+              <h2>{{userAuth.description}}</h2>
             </ion-label>
           </ion-item>
         </ion-list>

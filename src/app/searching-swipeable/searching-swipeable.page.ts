@@ -1,17 +1,10 @@
-import { Component, ViewChild,ViewChildren, QueryList,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DbService } from '../service/db.service';
 import { User } from '../model/User';
 import { Router } from '@angular/router';
-
-import {
-  StackConfig,
-  Stack,
-  Card,
-  ThrowEvent,
-  DragEvent,
-  SwingStackComponent,
-  SwingCardComponent
-} from 'angular2-swing';
+import { LoadingController } from '@ionic/angular';
+import { Game } from '../model/Game';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-searching-swipeable',
@@ -20,87 +13,107 @@ import {
   providers: [DbService]
 })
 export class SearchingSwipeablePage implements OnInit {
-  @ViewChild('myswing1', {static: true}) swingStack: SwingStackComponent;
-  @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
 
-  private usuarios : User[];
+  emailAuth: string;
+  userAuth: User;
+  likes: any;
+  dislikes: any;
+  cards: User[];
+  games: Game[];
+  lastCard: string = '';
+  loading;
 
-  cards: Array<any>;
-  stackConfig: StackConfig;
-  recentCard: string = '';
-
-  constructor(private dbService : DbService, private router: Router) {
-    this.stackConfig = {
-      throwOutConfidence: (offsetX, offsetY, element) => {
-        return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
-      },
-      transform: (element, x, y, r) => {
-        this.onItemMove(element, x, y, r);
-      },
-      throwOutDistance: (d) => {
-        return 800;
-      }
-    }; 
-    this.getUsers();
+  constructor(private dbService: DbService, private router: Router,
+    private loadingController: LoadingController, private auth: AuthenticationService) {
+    this.userAuth = new User();
+    this.emailAuth = this.auth.getUserEmailAuth();
+    this.getDataUserAuthentication();
+    this.initialize();
+    
   }
-  ngAfterViewInit() {
-    // Either subscribe in controller or set in HTML
-    this.swingStack.throwin.subscribe((event: DragEvent) => {
-      event.target.style.background = '#ffffff';
+
+  swipeLeft(event: any): any {
+    this.like(false);
+  }
+
+  swipeRight(event: any): any {
+    this.like(true);
+  }
+
+  async like(like: boolean) {
+    let removedCard = this.cards.pop();
+
+    if (like) {
+      
+      this.dbService.insertInList('usuarios/' + this.userAuth.uid + '/likes', { user : removedCard.uid });
+
+      this.lastCard= 'Ultimo Like: ' + removedCard.name;
+    } else {
+      this.dbService.insertInList('usuarios/' + this.userAuth.uid + '/dislikes', { user : removedCard.uid });
+   
+      this.lastCard= 'Ultimo Dislike: ' + removedCard.name;
+    }
+  }
+
+  async initialize() {
+    await this.presentLoading();
+
+    this.cards = await this.dbService.listWithUIDs<User>('usuarios');
+    this.games = await this.dbService.listWithUIDs<Game>('games');
+    this.likes = await this.dbService.listWithUIDs<any>('usuarios/'+ this.userAuth.uid+ "/likes");
+    this.dislikes = await this.dbService.listWithUIDs<any>('usuarios/'+ this.userAuth.uid+ "/dislikes");
+
+    this.cards.forEach(user => {
+      const game = this.games.filter(g => g.uid === user.gameUID)[0];
+      user['game'] = game;
     });
 
-    this.cards = [{ email: '' }];
-    this.getUsers();
+    this.cards = this.cards.filter(c => c.uid !== this.userAuth.uid);
+    this.likes.forEach(like => {
+      this.cards = this.cards.filter(c => c.uid !== like.user);
+    })
+    this.dislikes.forEach(dislike => {
+      this.cards = this.cards.filter(c => c.uid !== dislike.user);
+    })
+    
+    await this.hideLoading();
+  }
 
-    console.log(this.swingStack); // this is the stack
-    console.log(this.swingCards); // this is a list of cards
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Carregando'
+    });
+    await this.loading.present();
+
+  }
+
+  async hideLoading() {
+    this.loading.dismiss();
+  }
+
+  backFinding() {
+    this.router.navigate(['tabs/searching'])
+  }
+
+  async getDataUserAuthentication() {
+
+    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0]; 
+    
+  }
+
+  animateCSS(element, animationName, callback) {
+    const node = document.querySelector(element)
+    node.classList.add('animated', animationName)
+
+    function handleAnimationEnd() {
+      node.classList.remove('animated', animationName)
+      node.removeEventListener('animationend', handleAnimationEnd)
+
+      if (typeof callback === 'function') callback()
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd)
   }
   ngOnInit() {
-  }
-
-  voteUp(like: boolean) {
-    let removedCard = this.cards.pop();
-    this.getUsers();
-    if (like) {
-      this.recentCard = 'You liked: ' + removedCard.email;
-    } else {
-      this.recentCard = 'You disliked: ' + removedCard.email;
-    }
-  }
-
-  onItemMove(element, x, y, r) {
-    var color = '';
-    var abs = Math.abs(x);
-    let min = Math.trunc(Math.min(16 * 16 - abs, 16 * 16));
-    let hexCode = this.decimalToHex(min, 2);
-
-    if (x < 0) {
-      color = '#FF' + hexCode + hexCode;
-    } else {
-      color = '#' + hexCode + 'FF' + hexCode;
-    }
-
-    element.style.background = color;
-    element.style['transform'] = `translate3d(0, 0, 0) translate(${x}px, ${y}px) rotate(${r}deg)`;
-  }
-
-  decimalToHex(d, padding) {
-    var hex = Number(d).toString(16);
-    padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;
-
-    while (hex.length < padding) {
-      hex = "0" + hex;
-    }
-
-    return hex;
-  }
-
-
-  async getUsers(){
-    this.cards = await this.dbService.listWithUIDs<User>('usuarios');
-  }
-
-  backFinding(){
-    this.router.navigate(['tabs/searching'])
   }
 }

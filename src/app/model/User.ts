@@ -1,10 +1,10 @@
-import { Game } from './Game';
-
 export class User {
   uid: string;
   email: string;
   name: string;
-  gameUID: Game;
   description: string;
+  gameUID: string;
+  likes: any[];
+  dislikes: any[];
   isAdmin: boolean;
 }

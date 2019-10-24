@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: './searching-swipeable/searching-swipeable.module#SearchingSwipeablePageModule' 
   },
   { path: 'more-info', loadChildren: './more-info/more-info.module#MoreInfoPageModule' },
-  { 
-    path: 'register-profile', 
-    loadChildren: './adm/register-profile/register-profile.module#RegisterProfilePageModule' 
-  },
   { path: 'register-game', loadChildren: './adm/register-game/register-game.module#RegisterGamePageModule' },
 
 ];

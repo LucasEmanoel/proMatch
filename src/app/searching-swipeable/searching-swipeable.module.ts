@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SearchingSwipeablePage } from './searching-swipeable.page';
-import { SwingModule, SwingCardComponent, SwingStackComponent } from 'angular2-swing';
 
 const routes: Routes = [
   {
@@ -20,7 +19,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    SwingModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SearchingSwipeablePage]

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../model/User';
 import { DbService } from '../service/db.service';
-import { AuthenticationService } from '../service/authentication.service';
 import { ToastController } from '@ionic/angular';
 import { Game } from '../model/Game';
 
@@ -21,12 +20,7 @@ export class MoreInfoPage implements OnInit {
   {
     this.games = [];
     this.data = new User(); 
-    this.getGames();
-    this.route.queryParams.subscribe(params => {
-      if (params && params.special) {
-        this.data = JSON.parse(params.special);
-      }
-    });
+    this.inicializa(); 
   }
 
   ngOnInit() {
@@ -40,11 +34,16 @@ export class MoreInfoPage implements OnInit {
     toast.present();
   }
 
-  async getGames(){
-    this.games = await this.dbService.listWithUIDs<Game>('games');
-    console.log(this.games);
-    
+  async inicializa(){
+    this.route.queryParams.subscribe(params => {
+      if (params && params.special) {
+        this.data = JSON.parse(params.special);
+      }
+    });
+
+    this.games = await this.dbService.listWithUIDs<Game>('games');  
   }
+  
   goToHome() {
     this.dbService.insertInList('usuarios', this.data)
     .then(() => {
