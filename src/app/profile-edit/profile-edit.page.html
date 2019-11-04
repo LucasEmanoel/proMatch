@@ -31,19 +31,19 @@
         <div padding class="input-container">
           <ion-item>
             <ion-label position="stacked">Nome</ion-label>
-            <ion-input required type="text" [(ngModel)]="user.name"></ion-input>
+            <ion-input required type="text" [(ngModel)]="userAuth.name"></ion-input>
           </ion-item>
+
           <ion-item>
-            <ion-label position="stacked">Plataforma</ion-label>
-            <ion-input required type="text" [(ngModel)]="user.plataforma"></ion-input>
+            <ion-label>Game</ion-label>
+            <ion-select value="any" [(ngModel)]="userAuth.gameUID">
+              <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}}</ion-select-option>
+            </ion-select>
           </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Game</ion-label>
-            <ion-input required type="text" [(ngModel)]="user.game"></ion-input>
-          </ion-item>
+
           <ion-item>
             <ion-label position="stacked">Descrição</ion-label>
-            <ion-textarea maxlength="100" rows="9" [(ngModel)]="user.description"></ion-textarea>
+            <ion-textarea maxlength="100" rows="9" [(ngModel)]="userAuth.description"></ion-textarea>
           </ion-item>
         </div>
       </ion-col>

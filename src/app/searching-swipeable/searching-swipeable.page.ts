@@ -42,7 +42,7 @@ export class SearchingSwipeablePage implements OnInit {
 
   async like(like: boolean) {
     let removedCard = this.cards.pop();
-
+    //this.animateCSS('ion-card', 'fade', )
     if (like) {
       
       this.dbService.insertInList('usuarios/' + this.userAuth.uid + '/likes', { user : removedCard.uid });
@@ -114,6 +114,7 @@ export class SearchingSwipeablePage implements OnInit {
 
     node.addEventListener('animationend', handleAnimationEnd)
   }
+
   ngOnInit() {
   }
 }

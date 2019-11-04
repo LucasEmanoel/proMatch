@@ -1,17 +1,11 @@
 ion-content {
-  --background: #fff url('../../assets/img/more-info-background.jpg') no-repeat center center / cover;
+  --background: #fff url('../../assets/img/11854.jpg') no-repeat center center / cover;
 }
-
+ion-row{
+  height: 250px;
+}
 ion-item{
   --background: transparent !important;
-}
-
-.logo-container {
-  margin: 20% auto;
-}
-
-.list-container{
-  margin: 50% auto;
 }
 
 h1 {

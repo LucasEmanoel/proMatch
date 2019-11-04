@@ -4,6 +4,7 @@ import { User } from '../model/User';
 import { AuthenticationService } from '../service/authentication.service';
 import { DbService } from '../service/db.service';
 import { ToastController, ModalController } from '@ionic/angular';
+import { Game } from '../model/Game';
 
 @Component({
   selector: 'app-profile-edit',
@@ -14,20 +15,30 @@ export class ProfileEditPage implements OnInit {
 
 
   @Input()
-  user: User;
+  userAuth: User;
+  games: Game[];
 
-  constructor(private auth: AuthenticationService, private router: Router,
-    private dbService: DbService, public toastController: ToastController, private modalCtrl: ModalController) {
+  constructor(private router: Router, private dbService: DbService,
+    public toastController: ToastController, private modalCtrl: ModalController) {
 
-    this.user = new User();
+    this.userAuth = new User();
+    this.initialize();
   }
 
   ngOnInit() {
   }
 
+  async initialize() {
+    this.games = await this.dbService.listWithUIDs<Game>('games');
+  }
 
   async updateUser() {
-    await this.dbService.update('usuarios', this.user.uid, this.user)
+    await this.dbService.update('usuarios', this.userAuth.uid,
+      {
+        name: this.userAuth.name,
+        description: this.userAuth.description,
+        gameUID: this.userAuth.gameUID
+      })
       .then(() => {
         this.presentToast("editado com sucesso.")
         this.router.navigate(['tabs/profile']);
