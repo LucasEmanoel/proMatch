@@ -41,18 +41,22 @@ export class SearchingSwipeablePage implements OnInit {
   }
 
   async like(like: boolean) {
-    let removedCard = this.cards.pop();
-    //this.animateCSS('ion-card', 'fade', )
-    if (like) {
-      
-      this.dbService.insertInList('usuarios/' + this.userAuth.uid + '/likes', { user : removedCard.uid });
+    this.cards[0]['liked'] = true;
+    setTimeout(() => {
+      let removedCard = this.cards.pop();
+      //this.animateCSS('ion-card', 'fade', )
+      if (like) {
+        
+        this.dbService.insertInList('usuarios/' + this.userAuth.uid + '/likes', { user : removedCard.uid });
 
-      this.lastCard= 'Ultimo Like: ' + removedCard.name;
-    } else {
-      this.dbService.insertInList('usuarios/' + this.userAuth.uid + '/dislikes', { user : removedCard.uid });
-   
-      this.lastCard= 'Ultimo Dislike: ' + removedCard.name;
-    }
+        this.lastCard= 'Ultimo Like: ' + removedCard.name;
+      } else {
+        this.dbService.insertInList('usuarios/' + this.userAuth.uid + '/dislikes', { user : removedCard.uid });
+    
+        this.lastCard= 'Ultimo Dislike: ' + removedCard.name;
+      }
+    }, 2000);
+    
   }
 
   async initialize() {
