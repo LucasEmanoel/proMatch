@@ -42,6 +42,7 @@ export class SearchingSwipeablePage implements OnInit {
 
   async like(like: boolean) {
     this.cards[0]['liked'] = true;
+    
     setTimeout(() => {
       let removedCard = this.cards.pop();
       //this.animateCSS('ion-card', 'fade', )

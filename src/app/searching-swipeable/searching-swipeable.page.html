@@ -15,7 +15,7 @@
       <div class="icon-container">
         <ion-icon *ngIf="!cards || !cards.length" name="refresh" (click)="initialize()"></ion-icon>
       </div>
-      <ion-card *ngFor="let card of cards" swipeAll (swipeleft)="swipeLeft($event)" (swiperight)="swipeRight($event)"
+      <ion-card [class.liked]="card.liked" *ngFor="let card of cards" swipeAll (swipeleft)="swipeLeft($event)" (swiperight)="swipeRight($event)"
         id="card-animate">
         <img src="../../assets/img/pc.jpg" />
         <ion-card-header>
