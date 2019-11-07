@@ -1,5 +1,7 @@
 {
   "name": "proMatch",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

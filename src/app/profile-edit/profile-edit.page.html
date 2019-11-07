@@ -21,7 +21,8 @@
 
         <div class="logo-container">
           <ion-avatar>
-            <img src="../../assets/img/nitendo.jpg" alt="" srcset="">
+            <ion-img *ngIf="userAuth.photo" [src]="userAuth.photo"></ion-img>
+            <ion-icon *ngIf="!userAuth.photo" name="contact"></ion-icon>
           </ion-avatar>
           <a (click)="changePhoto()">
             <p style="text-align: center;">Mudar Foto</p>
@@ -43,7 +44,7 @@
 
           <ion-item>
             <ion-label position="stacked">Descrição</ion-label>
-            <ion-textarea maxlength="100" rows="9" [(ngModel)]="userAuth.description"></ion-textarea>
+            <ion-textarea maxlength="100" rows="12" [(ngModel)]="userAuth.description"></ion-textarea>
           </ion-item>
         </div>
       </ion-col>

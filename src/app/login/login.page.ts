@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +10,19 @@ import { AlertController } from '@ionic/angular';
   providers: [AuthenticationService]
 })
 export class LoginPage implements OnInit {
-
+  
+  loading;
   private email: string;
   private password: string;
 
   constructor(private router: Router, private authService: AuthenticationService,
-    private alertController: AlertController) { }
+    private alertController: AlertController, private loadingController: LoadingController) { }
 
   ngOnInit() {
   }
 
-  logar(){
+  async logar(){
+    await this.presentLoading();
     this.authService.login(this.email, this.password)
       .then(() => {
         this.router.navigate(['tabs']);
@@ -29,6 +31,7 @@ export class LoginPage implements OnInit {
         console.log(error);
         this.presentAlert('E-mail e/ou senha inválido(s).');
       });
+    await this.hideLoading();
   }
 
   async presentAlert(msg: string) {
@@ -50,5 +53,15 @@ export class LoginPage implements OnInit {
   goToRegisterProfile(){
     this.router.navigate(['register-profile']);
   }
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Carregando'
+    });
+    await this.loading.present();
 
+  }
+
+  async hideLoading() {
+    this.loading.dismiss();
+  }
 }

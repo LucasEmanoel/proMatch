@@ -29,7 +29,7 @@ export class SearchingSwipeablePage implements OnInit {
     this.emailAuth = this.auth.getUserEmailAuth();
     this.getDataUserAuthentication();
     this.initialize();
-    
+
   }
 
   swipeLeft(event: any): any {
@@ -42,22 +42,24 @@ export class SearchingSwipeablePage implements OnInit {
 
   async like(like: boolean) {
     this.cards[0]['liked'] = true;
-    
+
     setTimeout(() => {
       let removedCard = this.cards.pop();
       //this.animateCSS('ion-card', 'fade', )
       if (like) {
-        
-        this.dbService.insertInList('usuarios/' + this.userAuth.uid + '/likes', { user : removedCard.uid });
 
-        this.lastCard= 'Ultimo Like: ' + removedCard.name;
+        this.userAuth.likes.push(removedCard.uid);
+        this.dbService.update('usuarios', this.userAuth.uid, { likes: this.userAuth.likes });
+        this.lastCard = 'Ultimo Like: ' + removedCard.name;
       } else {
-        this.dbService.insertInList('usuarios/' + this.userAuth.uid + '/dislikes', { user : removedCard.uid });
-    
-        this.lastCard= 'Ultimo Dislike: ' + removedCard.name;
+
+        this.userAuth.dislikes.push(removedCard.uid);
+        this.dbService.update('usuarios', this.userAuth.uid, { dislikes: this.userAuth.dislikes });
+        this.lastCard = 'Ultimo Dislike: ' + removedCard.name;
       }
     }, 2000);
-    
+
+
   }
 
   async initialize() {
@@ -65,8 +67,16 @@ export class SearchingSwipeablePage implements OnInit {
 
     this.cards = await this.dbService.listWithUIDs<User>('usuarios');
     this.games = await this.dbService.listWithUIDs<Game>('games');
-    this.likes = await this.dbService.listWithUIDs<any>('usuarios/'+ this.userAuth.uid+ "/likes");
-    this.dislikes = await this.dbService.listWithUIDs<any>('usuarios/'+ this.userAuth.uid+ "/dislikes");
+
+    if (!this.userAuth.likes) {
+      this.userAuth.likes = []
+    }
+    if (!this.userAuth.dislikes) {
+      this.userAuth.dislikes = [];
+    }
+
+    this.likes = this.userAuth.likes;
+    this.dislikes = this.userAuth.dislikes;
 
     this.cards.forEach(user => {
       const game = this.games.filter(g => g.uid === user.gameUID)[0];
@@ -75,12 +85,12 @@ export class SearchingSwipeablePage implements OnInit {
 
     this.cards = this.cards.filter(c => c.uid !== this.userAuth.uid);
     this.likes.forEach(like => {
-      this.cards = this.cards.filter(c => c.uid !== like.user);
+      this.cards = this.cards.filter(c => c.uid !== like);
     })
     this.dislikes.forEach(dislike => {
-      this.cards = this.cards.filter(c => c.uid !== dislike.user);
+      this.cards = this.cards.filter(c => c.uid !== dislike);
     })
-    
+
     await this.hideLoading();
   }
 
@@ -102,8 +112,8 @@ export class SearchingSwipeablePage implements OnInit {
 
   async getDataUserAuthentication() {
 
-    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0]; 
-    
+    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0];
+
   }
 
   animateCSS(element, animationName, callback) {

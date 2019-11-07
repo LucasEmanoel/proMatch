@@ -4,7 +4,8 @@ export class User {
   name: string;
   description: string;
   gameUID: string;
-  likes: any[];
-  dislikes: any[];
+  likes: string[];
+  dislikes: string[];
   isAdmin: boolean;
+  photo: string;
 }
