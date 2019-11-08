@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../service/authentication.service';
 import { DbService } from '../service/db.service';
-import { Router } from '@angular/router';
 import { User } from '../model/User';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
+import { Chat } from '../model/Chat';
+import { ChatPage } from '../chat/chat.page';
 
 @Component({
   selector: 'app-matches',
@@ -12,25 +13,50 @@ import { LoadingController } from '@ionic/angular';
 })
 export class MatchesPage implements OnInit {
 
+  chats: Chat[];
   consulta: string;
-  user: User;
+  userAuth: User;
+  users: User[];
   loading;
 
   constructor(private auth: AuthenticationService, private dbService: DbService,
-    private loadingController: LoadingController) {
-    this.user = new User();
+    private loadingController: LoadingController, private modalController: ModalController ) {
+    this.userAuth = new User();
     this.consulta = this.auth.getUserEmailAuth();
     this.getDataUserAuthentication();
+    this.initialize();
   }
 
   ngOnInit() {
   }
 
   async getDataUserAuthentication() {
-    await this.presentLoading();
-    this.user = (await this.dbService.search<User>('usuarios', 'email', this.consulta))[0];
+    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.consulta))[0];
+  }
 
-    await this.hideLoading();
+  async initialize(){
+    this.chats = await this.dbService.listWithUIDs<Chat>('chats');
+    this.users = await this.dbService.listWithUIDs<User>('usuarios');
+
+    this.chats = this.chats.filter(chat => chat.userTwoUID === this.userAuth.uid);
+
+    this.chats.forEach(chat => {
+      this.users = this.users.filter(user => {
+        chat.userTwoUID === user.uid;
+        chat['photo'] = user.photo;
+        chat['otherUser'] = user.name;
+      })
+    });
+
+  }
+
+  async openChat(uid) {
+    const chat = this.chats.find(chat => chat.uid === uid);
+    const modal = await this.modalController.create({
+      component: ChatPage,
+      componentProps: chat //passar user 2
+    });
+    return await modal.present();
   }
 
   async presentLoading() {

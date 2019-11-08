@@ -20,7 +20,7 @@ export class MoreInfoPage implements OnInit {
   {
     this.games = [];
     this.data = new User(); 
-    this.inicializa(); 
+    this.initialize(); 
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class MoreInfoPage implements OnInit {
     toast.present();
   }
 
-  async inicializa(){
+  async initialize(){
     this.route.queryParams.subscribe(params => {
       if (params && params.special) {
         this.data = JSON.parse(params.special);
@@ -44,8 +44,8 @@ export class MoreInfoPage implements OnInit {
     this.games = await this.dbService.listWithUIDs<Game>('games');  
   }
   
-  goToHome() {
-    this.dbService.insertInList('usuarios', this.data)
+  async goToHome() {
+    await this.dbService.insertInList('usuarios', this.data)
     .then(() => {
       this.presentToast("cadastro feito com sucesso.")
       this.router.navigate(['tabs/home']);

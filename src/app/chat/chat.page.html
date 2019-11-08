@@ -1,0 +1,25 @@
+<ion-header no-border>
+  <ion-toolbar transparent>
+    <ion-title>{{chat.otherUser}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+</ion-content>
+<ion-footer>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="10">
+          <ion-input type="text" placeholder="Digite uma mensagem"></ion-input>
+        </ion-col>
+        <ion-col size="2">
+          <ion-icon name="paper-plane"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>

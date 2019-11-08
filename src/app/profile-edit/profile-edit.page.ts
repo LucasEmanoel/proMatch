@@ -35,6 +35,7 @@ export class ProfileEditPage implements OnInit {
 
   async initialize() {
     this.games = await this.dbService.listWithUIDs<Game>('games');
+    this.userAuth.photo = '';
   }
 
   async presentActionSheet() {
@@ -102,8 +103,6 @@ export class ProfileEditPage implements OnInit {
       'dismissed': true
     });
   }
-
-  
 
   async presentToast(msg: string) {
     const toast = await this.toastController.create({

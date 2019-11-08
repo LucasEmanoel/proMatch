@@ -3,9 +3,10 @@
   height: 240px;
   text-align: center;
 }
-.photo-container img {
+.photo-container ion-img {
   border-bottom-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
+  max-height: 240px;
 }
 
 .photo-container ion-icon {

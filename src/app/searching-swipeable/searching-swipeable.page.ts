@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { Game } from '../model/Game';
 import { AuthenticationService } from '../service/authentication.service';
+import { Chat } from '../model/Chat';
 
 @Component({
   selector: 'app-searching-swipeable',
@@ -20,7 +21,6 @@ export class SearchingSwipeablePage implements OnInit {
   dislikes: any;
   cards: User[];
   games: Game[];
-  lastCard: string = '';
   loading;
 
   constructor(private dbService: DbService, private router: Router,
@@ -33,7 +33,7 @@ export class SearchingSwipeablePage implements OnInit {
   }
 
   swipeLeft(event: any): any {
-    this.like(false);
+    this.like(false);  
   }
 
   swipeRight(event: any): any {
@@ -41,25 +41,30 @@ export class SearchingSwipeablePage implements OnInit {
   }
 
   async like(like: boolean) {
-    this.cards[0]['liked'] = true;
-
-    setTimeout(() => {
-      let removedCard = this.cards.pop();
-      //this.animateCSS('ion-card', 'fade', )
+    this.cards[this.cards.length-1]['liked'] = true;
+    setTimeout(async () => {
+      const removedCard = this.cards.pop();
+      
       if (like) {
-
         this.userAuth.likes.push(removedCard.uid);
-        this.dbService.update('usuarios', this.userAuth.uid, { likes: this.userAuth.likes });
-        this.lastCard = 'Ultimo Like: ' + removedCard.name;
+        await this.dbService.update('usuarios', this.userAuth.uid, { likes: this.userAuth.likes });
+
+        removedCard.likes.forEach(async like => {
+          console.log('Admin ' + this.userAuth.uid);
+          console.log('like em ' + like);
+          if (like === this.userAuth.uid) {
+            const chat = new Chat();
+            chat.userOneUID = this.userAuth.uid;
+            chat.userTwoUID = removedCard.uid;
+            await this.dbService.insertInList('chats', chat);
+          }
+        });
+
       } else {
-
         this.userAuth.dislikes.push(removedCard.uid);
-        this.dbService.update('usuarios', this.userAuth.uid, { dislikes: this.userAuth.dislikes });
-        this.lastCard = 'Ultimo Dislike: ' + removedCard.name;
+        await this.dbService.update('usuarios', this.userAuth.uid, { dislikes: this.userAuth.dislikes });
       }
-    }, 2000);
-
-
+    }, 1000);
   }
 
   async initialize() {
@@ -80,7 +85,15 @@ export class SearchingSwipeablePage implements OnInit {
 
     this.cards.forEach(user => {
       const game = this.games.filter(g => g.uid === user.gameUID)[0];
+
       user['game'] = game;
+
+      if (!user.likes) {
+        user.likes = []
+      }
+      if (!user.dislikes) {
+        user.dislikes = [];
+      }
     });
 
     this.cards = this.cards.filter(c => c.uid !== this.userAuth.uid);
@@ -115,21 +128,7 @@ export class SearchingSwipeablePage implements OnInit {
     this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0];
 
   }
-
-  animateCSS(element, animationName, callback) {
-    const node = document.querySelector(element)
-    node.classList.add('animated', animationName)
-
-    function handleAnimationEnd() {
-      node.classList.remove('animated', animationName)
-      node.removeEventListener('animationend', handleAnimationEnd)
-
-      if (typeof callback === 'function') callback()
-    }
-
-    node.addEventListener('animationend', handleAnimationEnd)
-  }
-
+  
   ngOnInit() {
   }
 }

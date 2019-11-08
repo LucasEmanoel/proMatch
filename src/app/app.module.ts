@@ -16,10 +16,11 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { IonicSwipeAllModule } from 'ionic-swipe-all';
 import { ProfileEditPage } from './profile-edit/profile-edit.page';
 import { FormsModule } from '@angular/forms';
+import { ChatPage } from './chat/chat.page';
 
 @NgModule({
-  declarations: [AppComponent, ProfileEditPage],
-  entryComponents: [ ProfileEditPage ],
+  declarations: [AppComponent, ProfileEditPage, ChatPage],
+  entryComponents: [ ProfileEditPage, ChatPage ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
