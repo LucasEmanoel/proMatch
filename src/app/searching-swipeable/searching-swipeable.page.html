@@ -8,27 +8,29 @@
 
 <ion-content fullscreen>
   <ion-grid style="height: 100%">
-    <ion-row justify-content-center align-items-center style="height: 70%; width: 100%;">
+    <ion-row justify-content-center align-items-center style="height: 80%; width: 100%;">
+      
       <div class="icon-container">
         <ion-icon *ngIf="!cards || !cards.length" name="refresh" (click)="initialize()"></ion-icon>
       </div>
-      <ion-card [class.liked]="card.liked" *ngFor="let card of cards" swipeAll (swipeleft)="swipeLeft($event)" (swiperight)="swipeRight($event)">
-        <div class="card-image">
-          <ion-img *ngIf="card.photo" [src]="card.photo"></ion-img>
-          <ion-icon *ngIf="!card.photo" name="contact"></ion-icon>
-        </div>
-        
-        <ion-card-header>
-          <ion-card-title>{{card.name}}</ion-card-title>
-        </ion-card-header>
 
-        <ion-list *ngIf="card.game">
-          Minha Plataforma : {{card.game.platform}} || Game : {{card.game.name}}
-          <br><br>
-          {{card.description}}
-        </ion-list>
+        <ion-card [class.liked]="card.liked" [class.disliked]="card.disliked" *ngFor="let card of cards" swipeAll
+          (swipeleft)="swipeLeft($event)" (swiperight)="swipeRight($event)">
+          <div class="card-image">
+            <ion-img *ngIf="card.photo" [src]="card.photo"></ion-img>
+            <ion-icon *ngIf="!card.photo" name="contact"></ion-icon>
+          </div>
 
-      </ion-card>
+          <ion-card-header>
+            <ion-card-title>{{card.name}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-list *ngIf="card.game">
+            Minha Plataforma : {{card.game.platform}} || Game : {{card.game.name}}
+            <br><br>
+            {{card.description}}
+          </ion-list>
+        </ion-card>
     </ion-row>
 
     <ion-row justify-content-center>

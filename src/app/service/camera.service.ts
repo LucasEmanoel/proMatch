@@ -15,8 +15,6 @@ export class CameraService {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      targetHeight: 300,
-      targetWidth: 300
       
     }
     
@@ -32,8 +30,6 @@ export class CameraService {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      targetHeight: 300,
-      targetWidth: 300
     }
     
     const imageData = await this.camera.getPicture(options);

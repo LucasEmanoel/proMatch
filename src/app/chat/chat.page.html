@@ -1,25 +1,43 @@
 <ion-header no-border>
   <ion-toolbar transparent>
-    <ion-title>{{chat.otherUser}}</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="dismiss()">
-        <ion-icon name="close"></ion-icon>
+        <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
+
+    <ion-buttons slot="start">
+      <ion-avatar>
+        <ion-img [src]="chat.photo"></ion-img>
+        <ion-icon *ngIf="!chat.photo" name="contact"></ion-icon>
+      </ion-avatar>
+    </ion-buttons>
+    <ion-title>{{chat.otherUser}}</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
+  <ion-grid fixed>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-xs="12">
+        <ion-card class="ion-float-left">
+          <ion-item>
+            <p>hii selenaa dsakjd sad klasm dlksajdklsamdk
+              slamdklsadmsaklmdsakldmaskldmsakldmsaklfmsaklfsaklfsakfmsaklf
+              kfsamnfklsamfsadsakdmsakda
+            </p>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row id="input-send">
+      <ion-col size="10">
+        <ion-input type="text" placeholder="Digite uma mensagem"></ion-input>
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon name="paper-plane"></ion-icon>
+      </ion-col>
+    </ion-row>
 </ion-content>
-<ion-footer>
-    <ion-grid fixed>
-      <ion-row>
-        <ion-col size="10">
-          <ion-input type="text" placeholder="Digite uma mensagem"></ion-input>
-        </ion-col>
-        <ion-col size="2">
-          <ion-icon name="paper-plane"></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-footer>

@@ -35,26 +35,36 @@ export class MatchesPage implements OnInit {
   }
 
   async initialize(){
+    await this.presentLoading();
+
     this.chats = await this.dbService.listWithUIDs<Chat>('chats');
     this.users = await this.dbService.listWithUIDs<User>('usuarios');
 
-    this.chats = this.chats.filter(chat => chat.userTwoUID === this.userAuth.uid);
+    this.chats = this.chats.filter(chat => chat.userOneUID === this.userAuth.uid || chat.userTwoUID === this.userAuth.uid);
 
     this.chats.forEach(chat => {
       this.users = this.users.filter(user => {
-        chat.userTwoUID === user.uid;
-        chat['photo'] = user.photo;
-        chat['otherUser'] = user.name;
+        if(chat.userTwoUID === this.userAuth.uid){
+          chat.userOneUID === user.uid;
+          chat['photo'] = user.photo || null;
+          chat['otherUser'] = user.name;
+        }else {
+          chat.userTwoUID === user.uid;
+          chat['photo'] = user.photo || null;
+          chat['otherUser'] = user.name;
+        }
+        
       })
     });
 
+    await this.hideLoading();
   }
 
   async openChat(uid) {
     const chat = this.chats.find(chat => chat.uid === uid);
     const modal = await this.modalController.create({
       component: ChatPage,
-      componentProps: chat //passar user 2
+      componentProps: { chat: chat }
     });
     return await modal.present();
   }

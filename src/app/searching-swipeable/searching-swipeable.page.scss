@@ -1,7 +1,7 @@
 ion-card{
   position: absolute;
   text-align: center;
-  height: 352px;
+  height: 400px;
   width: 80%;
   border-radius: 8px;
   --background: #f4f4f8;
@@ -13,6 +13,7 @@ ion-card{
   .card-image{
     width: 100%;
     height: 60%;
+    background: lightgray;
   }
   .card-image ion-icon{
     margin: 50px;
@@ -28,6 +29,7 @@ ion-list {
   overflow-y: auto;
 }
 .icon-container {
+  margin: 10px;
   width: 100%;
   text-align: center;
 }
@@ -36,6 +38,14 @@ ion-list {
 }
 
 .liked {
+  background-image: url('../../assets/img/like.png');
+  transition: visibility 0s linear 1000ms, opacity 1000ms;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+.disliked {
+  background-image: url('../../assets/img/dislike.png');
   transition: visibility 0s linear 1000ms, opacity 1000ms;
   opacity: 0;
   height: 0;

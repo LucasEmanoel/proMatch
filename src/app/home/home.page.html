@@ -10,70 +10,76 @@
 </ion-header>
 
 <ion-content fullscreen>
+  <ion-grid fixed>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
+        
+        <div class="first-view-container">
+          <h3>Encontre Amigos</h3>
+          <a (click)="goToSearchSwipe()">
+            <img src="../../assets/img/teste.jpg" alt="">
+          </a>
+        </div>
 
-  <div class="first-view-container">
-    <h3>Encontre Amigos</h3>
-    <a (click)="goToSearchSwipe()">
-      <img src="../../assets/img/teste.jpg" alt="">
-    </a>
-  </div>
-
-  <div class="platforms-container">
-    <h3>Para todas plataformas</h3>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-segment scrollable>
-            <ion-segment-button>
-              <div>
-                <img src="../../assets/img/pc.jpg" alt="">
-              </div>
-            </ion-segment-button>
-            <ion-segment-button>
-              <div>
-                <img src="../../assets/img/phone.jpg" alt="">
-              </div>
-            </ion-segment-button>
-            <ion-segment-button>
-              <div>
-                <img src="../../assets/img/play.jpg" alt="">
-              </div>
-            </ion-segment-button>
-            <ion-segment-button>
-              <div>
-                <img src="../../assets/img/nitendo.jpg" alt="">
-              </div>
-            </ion-segment-button>
-          </ion-segment>
-        </ion-col>
-      </ion-row>
-      <h3>Para todos players</h3>
-      <ion-row>
-        <ion-col>
-          <ion-segment scrollable>
-            <ion-segment-button>
-              <div>
-                <img src="../../assets/img/man.jpg" alt="">
-              </div>
-            </ion-segment-button>
-            <ion-segment-button>
-              <div>
-                <img src="../../assets/img/girl.jpg" alt="">
-              </div>
-            </ion-segment-button>
-            <ion-segment-button>
-              <div>
-                <img src="../../assets/img/kids.jpg" alt="">
-              </div>
-            </ion-segment-button>
-            <ion-segment-button>
-              <div>
-                <img src="../../assets/img/grand.jpg" alt="">
-              </div>
-            </ion-segment-button>
-          </ion-segment>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+        <div class="platforms-container">
+          <h3>Para todas plataformas</h3>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-segment scrollable>
+                  <ion-segment-button>
+                    <div>
+                      <img src="../../assets/img/pc.jpg" alt="">
+                    </div>
+                  </ion-segment-button>
+                  <ion-segment-button>
+                    <div>
+                      <img src="../../assets/img/phone.jpg" alt="">
+                    </div>
+                  </ion-segment-button>
+                  <ion-segment-button>
+                    <div>
+                      <img src="../../assets/img/play.jpg" alt="">
+                    </div>
+                  </ion-segment-button>
+                  <ion-segment-button>
+                    <div>
+                      <img src="../../assets/img/nitendo.jpg" alt="">
+                    </div>
+                  </ion-segment-button>
+                </ion-segment>
+              </ion-col>
+            </ion-row>
+            <h3>Para todos players</h3>
+            <ion-row>
+              <ion-col>
+                <ion-segment scrollable>
+                  <ion-segment-button>
+                    <div>
+                      <img src="../../assets/img/man.jpg" alt="">
+                    </div>
+                  </ion-segment-button>
+                  <ion-segment-button>
+                    <div>
+                      <img src="../../assets/img/girl.jpg" alt="">
+                    </div>
+                  </ion-segment-button>
+                  <ion-segment-button>
+                    <div>
+                      <img src="../../assets/img/kids.jpg" alt="">
+                    </div>
+                  </ion-segment-button>
+                  <ion-segment-button>
+                    <div>
+                      <img src="../../assets/img/grand.jpg" alt="">
+                    </div>
+                  </ion-segment-button>
+                </ion-segment>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

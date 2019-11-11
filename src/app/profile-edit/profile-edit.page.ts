@@ -25,8 +25,6 @@ export class ProfileEditPage implements OnInit {
     public toastController: ToastController, private modalCtrl: ModalController,
     private cameraService: CameraService, private actionSheetController: ActionSheetController,
     private camera: Camera) {
-
-    this.userAuth = new User();
     this.initialize();
   }
 
@@ -35,7 +33,6 @@ export class ProfileEditPage implements OnInit {
 
   async initialize() {
     this.games = await this.dbService.listWithUIDs<Game>('games');
-    this.userAuth.photo = '';
   }
 
   async presentActionSheet() {
@@ -85,7 +82,7 @@ export class ProfileEditPage implements OnInit {
         name: this.userAuth.name,
         description: this.userAuth.description,
         gameUID: this.userAuth.gameUID,
-        photo: this.userAuth.photo
+        photo: this.userAuth.photo || null
       })
       .then(() => {
         this.presentToast("editado com sucesso.")

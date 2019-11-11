@@ -5,21 +5,23 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-list>
-    <ion-item-sliding>
-      <ion-item *ngFor="let chat of chats" (click)="openChat(chat.uid)">
-        <ion-avatar>
-          <ion-img *ngIf="chat.photo" [src]="chat.photo"></ion-img>
-          <ion-icon *ngIf="!chat.photo" name="contact"></ion-icon>
-        </ion-avatar>
-        <ion-label>
-          <h3>{{chat.userTwoUID}}</h3>
-        </ion-label>
-        <ion-icon name="heart" slot="end" color="primary"></ion-icon>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)">Rejeitar</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+  <ion-grid fixed>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
+
+        <ion-list>
+          <ion-item *ngFor="let chat of chats" (click)="openChat(chat.uid)">
+            <ion-avatar>
+              <ion-img *ngIf="chat.photo" [src]="chat.photo"></ion-img>
+              <ion-icon *ngIf="!chat.photo" name="contact"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+              <h3>{{chat.otherUser}}</h3>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

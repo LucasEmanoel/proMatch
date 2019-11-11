@@ -14,6 +14,13 @@
     --color: #000;
     font-size: 20px;
   }
+  
+  ion-grid {
+    padding: 0;
+    ion-col {
+      padding: 0;
+    }
+  }
   --ion-safe-area-top: 5px;
 
   --ion-background-color: #f4f4f8;

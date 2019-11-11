@@ -33,7 +33,7 @@ export class SearchingSwipeablePage implements OnInit {
   }
 
   swipeLeft(event: any): any {
-    this.like(false);  
+    this.like(false);
   }
 
   swipeRight(event: any): any {
@@ -41,17 +41,22 @@ export class SearchingSwipeablePage implements OnInit {
   }
 
   async like(like: boolean) {
-    this.cards[this.cards.length-1]['liked'] = true;
+    if(like) {
+      this.cards[this.cards.length - 1]['liked'] = true;
+    }else{
+      this.cards[this.cards.length - 1]['disliked'] = true;
+    }
+    
+    
+    console.log(this.cards);
     setTimeout(async () => {
       const removedCard = this.cards.pop();
-      
+
       if (like) {
         this.userAuth.likes.push(removedCard.uid);
         await this.dbService.update('usuarios', this.userAuth.uid, { likes: this.userAuth.likes });
 
         removedCard.likes.forEach(async like => {
-          console.log('Admin ' + this.userAuth.uid);
-          console.log('like em ' + like);
           if (like === this.userAuth.uid) {
             const chat = new Chat();
             chat.userOneUID = this.userAuth.uid;
@@ -59,7 +64,6 @@ export class SearchingSwipeablePage implements OnInit {
             await this.dbService.insertInList('chats', chat);
           }
         });
-
       } else {
         this.userAuth.dislikes.push(removedCard.uid);
         await this.dbService.update('usuarios', this.userAuth.uid, { dislikes: this.userAuth.dislikes });
@@ -128,7 +132,7 @@ export class SearchingSwipeablePage implements OnInit {
     this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0];
 
   }
-  
+
   ngOnInit() {
   }
 }
