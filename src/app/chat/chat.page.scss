@@ -1,7 +1,6 @@
-
 ion-grid {
   ion-card {
-    max-width: 94%;
+    max-width: 94vw;
         
     p {
       max-width: 100%;
@@ -9,24 +8,32 @@ ion-grid {
   }
 }
 
-ion-title {
-  margin: 0;
-  padding: 5px;
+ion-toolbar {
+  ion-title {
+    margin: 0;
+    padding: 0 0.2em;
+  }
+  
+  ion-avatar {
+    height: 2.7em;
+    width: 2.7em;
+    
+    ion-icon{
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
-ion-avatar {
-  height: 45px;
-  width: 45px;
-}
 
-#input-send {
+.input-send {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
 
   ion-icon {
-    width: 35px;
-    height: 35px;
+    width: 100%;
+    height: 100%;
   }
 }

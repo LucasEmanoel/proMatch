@@ -1,21 +1,24 @@
 .photo-container{
-  width: 100%;
-  height: 30%;
   text-align: center;
+  background: gray;
 
-  ion-img {
-    border-bottom-left-radius: 20px !important;
-    border-bottom-right-radius: 20px !important;
-    background-size: cover;
+  img {
+    border-bottom-left-radius: 2em !important;
+    border-bottom-right-radius: 2em !important;
+    max-height: 40vh;
   }
 
   ion-icon {
-    margin: 15%;
-    width: 100px;
-    height: 100px;
+    height: 30vh;
+    width: 100vw;
   }
 
 }
+
 .info-container h2, h4 {
-  margin: 10px 0px;
+  margin: 1vh 0;  
+}
+
+.description-container{
+  height: 32vh;
 }

@@ -4,27 +4,27 @@
 
 
 :root {
-  ion-segment-button {
-    --indicator-color: transparent !important;
-    --indicator-color-checked: transparent !important;
-    --color-checked: transparent !important;
-    --color-activated: transparent !important;
-  }
-  ion-toolbar ion-title{
-    --color: #000;
-    font-size: 20px;
+  ion-toolbar {
+    ion-title{
+      --color: #000 !important;
+
+    }
   }
   
   ion-grid {
     padding: 0;
-    ion-col {
+
+    ion-row {
       padding: 0;
+
+      ion-col {
+        padding: 0;
+      }
     }
   }
-  --ion-safe-area-top: 5px;
-
-  --ion-background-color: #f4f4f8;
-  --ion-toolbar-background: #f4f4f8;
+  
+  --ion-background-color: #F2F2F2;
+  --ion-toolbar-background: #F2F2F2;
   
   /** primary **/
   --ion-color-primary: #fe4a49;

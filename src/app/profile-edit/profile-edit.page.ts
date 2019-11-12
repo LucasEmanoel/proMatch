@@ -95,6 +95,10 @@ export class ProfileEditPage implements OnInit {
       });
   }
 
+  Disconnect(){
+    
+  }
+  
   dismiss() {
     this.modalCtrl.dismiss({
       'dismissed': true

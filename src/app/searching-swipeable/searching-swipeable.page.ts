@@ -68,7 +68,7 @@ export class SearchingSwipeablePage implements OnInit {
         this.userAuth.dislikes.push(removedCard.uid);
         await this.dbService.update('usuarios', this.userAuth.uid, { dislikes: this.userAuth.dislikes });
       }
-    }, 1000);
+    }, 3000);
   }
 
   async initialize() {

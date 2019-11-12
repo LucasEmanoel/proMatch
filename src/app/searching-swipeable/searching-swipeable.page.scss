@@ -1,40 +1,51 @@
+.card-container {
+  height: 75vh;
+
+  ion-col {
+    height: 100%;
+  }
+  .icon-container {
+    ion-icon {
+      position: absolute;
+      margin: 33vh 43vw;
+    }
+  }
+}
+
 ion-card{
-  position: absolute;
-  text-align: center;
-  height: 400px;
-  width: 80%;
-  border-radius: 8px;
-  --background: #f4f4f8;
+    position: absolute;
+    text-align: center;
+    height: 60vh;
+    width: 80vw;
+    margin: 8vh 10vw;
+    border-radius: 1em;
+    --background: #f4f4f8;
 
   ion-card-header{
-    padding: 5px;
+    padding: 1em;
   }
 
   .card-image{
-    width: 100%;
-    height: 60%;
+    height: 58%;
     background: lightgray;
   }
   .card-image ion-icon{
-    margin: 50px;
-    width: 60%;
-    height: 60%;
+    margin: 2em;
+    width: 11em;
+    height: 11em;
   } 
   .card-image ion-img{
     height: 100%;
   }
+
+  ion-list {
+    margin: 0 0.3em;
+  }
+  
 }
-ion-list {
-  overflow: hidden;
-  overflow-y: auto;
-}
-.icon-container {
-  margin: 10px;
-  width: 100%;
-  text-align: center;
-}
+
 .icon-container ion-icon {
-  font-size: 50px;
+  font-size: 3em;
 }
 
 .liked {

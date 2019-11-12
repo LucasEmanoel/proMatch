@@ -22,10 +22,10 @@ export class ProfilePage implements OnInit {
   constructor(private auth: AuthenticationService, private dbService: DbService, 
     public modalController: ModalController, private loadingController: LoadingController) {
     this.games = [];
-    this.userAuth = new User();
+    this.userAuth = new User;
     this.consulta = this.auth.getUserEmailAuth();
     this.getDataUserAuthentication();
-    this.initialize()
+    this.initialize();
 
   }
 
@@ -41,7 +41,9 @@ export class ProfilePage implements OnInit {
 
     this.games = await this.dbService.listWithUIDs<Game>('games');
 
-    const game = this.games.filter(g => g.uid === this.userAuth.gameUID)[0];
+    const game = this.games.find(g => g.uid === this.userAuth.gameUID);
+    console.log(game);
+    
     this.userAuth['game'] = game;
 
     await this.hideLoading();

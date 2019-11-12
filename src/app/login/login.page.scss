@@ -1,25 +1,30 @@
 .logo-container{
-  margin-top: 25%;
-  overflow: hidden;
-  height: 230px;
-}
-.logo-container img{
-  width: 95%;
-  height: 100%;
-  transform: scale(0.6);
-}
-.button-container {
-  margin: 15px 0;
-}
-.button-container ion-button{
-  --border-radius: 50px;
+  margin-top: 8vh;
+  height: 35vh;
+
+  img{
+    width: 100%;
+    height: 100%;
+    transform: scale(0.7);
+  }
 }
 
+.button-container {
+  margin: 2vh 0;
+
+  ion-button{
+    --border-radius: 20em;
+  }
+
+}
+ 
 .account-container {
-  margin: 30% 0 0 0;
+  margin: 13vh 0 0 0;
+  a {
+    color: var(--ion-color-primary);
+  }
 }
 
 .forgot-container {
-  margin: 0 10px;
-  size: 15px;
+  margin: 0 2vw;
 }

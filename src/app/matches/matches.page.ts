@@ -40,7 +40,9 @@ export class MatchesPage implements OnInit {
     this.chats = await this.dbService.listWithUIDs<Chat>('chats');
     this.users = await this.dbService.listWithUIDs<User>('usuarios');
 
-    this.chats = this.chats.filter(chat => chat.userOneUID === this.userAuth.uid || chat.userTwoUID === this.userAuth.uid);
+    /*this.chats = this.chats.filter(chat => {
+      !(chat.userOneUID === this.userAuth.uid || chat.userTwoUID === this.userAuth.uid)
+    });*/
 
     this.chats.forEach(chat => {
       this.users = this.users.filter(user => {

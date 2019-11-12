@@ -1,11 +1,11 @@
 <ion-header no-border>
-  <ion-toolbar transparent> 
+  <ion-toolbar transparent>
     <ion-title>Editar Perfil</ion-title>
     <ion-buttons slot="start">
-        <ion-button (click)="dismiss()">
-          <ion-icon name="arrow-back"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="updateUser()">
         <ion-icon name="checkmark"></ion-icon>
@@ -17,37 +17,45 @@
 <ion-content fullscreen>
   <ion-grid fixed>
     <ion-row justify-content-center>
-      <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
+      <ion-col class="logo-container" align-self-center size-xs="11">
 
-        <div class="logo-container">
-          <ion-avatar>
-            <ion-img *ngIf="userAuth.photo" [src]="userAuth.photo"></ion-img>
-            <ion-icon *ngIf="!userAuth.photo" name="contact"></ion-icon>
-          </ion-avatar>
-          <a (click)="changePhoto()">
-            <p style="text-align: center;">Mudar Foto</p>
-          </a>
-        </div>
+        <ion-avatar>
+          <ion-img *ngIf="userAuth.photo" [src]="userAuth.photo"></ion-img>
+          <ion-icon *ngIf="!userAuth.photo" name="contact"></ion-icon>
+        </ion-avatar>
+        <a (click)="changePhoto()">
+          <p>Mudar Foto</p>
+        </a>
 
-        <div padding class="input-container">
-          <ion-item>
-            <ion-label position="stacked">Nome</ion-label>
-            <ion-input required type="text" [(ngModel)]="userAuth.name"></ion-input>
-          </ion-item>
+      </ion-col>
+    </ion-row>
 
-          <ion-item>
-            <ion-label>Game</ion-label>
-            <ion-select value="any" [(ngModel)]="userAuth.gameUID">
-              <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}}</ion-select-option>
-            </ion-select>
-          </ion-item>
+    <ion-row justify-content-center>
+      <ion-col class="input-container" align-self-center size-xs="11">
 
-          <ion-item>
-            <ion-label position="stacked">Descrição</ion-label>
-            <ion-textarea maxlength="100" rows="12" [(ngModel)]="userAuth.description"></ion-textarea>
-          </ion-item>
-        </div>
+        <ion-item>
+          <ion-label position="stacked">Nome</ion-label>
+          <ion-input required type="text" [(ngModel)]="userAuth.name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Game</ion-label>
+          <ion-select value="any" [(ngModel)]="userAuth.gameUID">
+            <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Descrição</ion-label>
+          <ion-textarea maxlength="100" rows="12" [(ngModel)]="userAuth.description"></ion-textarea>
+        </ion-item>
+
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon name="exit" (click)="Disconnect()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

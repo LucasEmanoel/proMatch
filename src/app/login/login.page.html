@@ -7,7 +7,7 @@
           <img src="../../assets/img/zed.png" alt="zed">
         </div>
 
-        <ion-card id="login-card">
+        <ion-card>
           <div padding class="input-container">
             <ion-input [(ngModel)]="email" placeholder=" Email Address"></ion-input>
             <ion-input [(ngModel)]="password" placeholder=" Senha " type="password"></ion-input>
@@ -25,7 +25,7 @@
 
         <div class="account-container" text-center>
           <p>Não tem conta ainda?</p>
-          <a (click)="goToRegister()" style="color: red">Cadastre-se</a>
+          <a (click)="goToRegister()">Cadastre-se</a>
         </div>
         
       </ion-col>

@@ -22,6 +22,7 @@ export class TabsPage implements OnInit {
     this.getDataUserAuthentication();
 
   }
+  
   async getDataUserAuthentication() {
     this.user = (await this.dbService.search<User>('usuarios', 'email', this.consulta))[0];
     if(this.user.isAdmin){

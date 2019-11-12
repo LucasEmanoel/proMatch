@@ -1,28 +1,27 @@
 img {
-  border-radius: 20px;
+  border-radius: 2em;
 }
-.first-view-container img {
-  transform: scale(0.9);
-}
+
 h3 {
-  margin: 3% 0 0 5%; 
-}
-.platforms-container img{
-  height: 100px;
-  widows: 100px;
+  margin: 2vh 0 2vh 5vw;
 }
 
-.platforms-container ion-segment-button{
-  --border-color: none;
-  --border-width: 0;
-  margin:10px;
+.image-container {
+  img{
+    width: 90vw;
+    margin: 0 5vw;
+  }
 }
 
-.scroll[scrollx=true], div[scrolly=true] {
-  position: relative;
-  overflow: hidden;
-  
-  ::-webkit-scrollbar {
-    display: none;
+.info-container {
+  ion-segment-button{
+    margin: 0 1.5em;
+    border: none !important;
+    --background-checked: none !important;
+  }
+
+  img{
+    height: 16vh;
+    width: 40vw; 
   }
 }

@@ -7,12 +7,12 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-grid style="height: 100%">
-    <ion-row justify-content-center align-items-center style="height: 80%; width: 100%;">
-      
-      <div class="icon-container">
-        <ion-icon *ngIf="!cards || !cards.length" name="refresh" (click)="initialize()"></ion-icon>
-      </div>
+  <ion-grid>
+    <ion-row class="card-container" justify-content-center align-items-center>
+      <ion-col class="ion-align-items-center" size-xs="12">
+        <div class="icon-container">
+          <ion-icon *ngIf="!cards || !cards.length" name="refresh" (click)="initialize()"></ion-icon>
+        </div>
 
         <ion-card [class.liked]="card.liked" [class.disliked]="card.disliked" *ngFor="let card of cards" swipeAll
           (swipeleft)="swipeLeft($event)" (swiperight)="swipeRight($event)">
@@ -30,7 +30,9 @@
             <br><br>
             {{card.description}}
           </ion-list>
+
         </ion-card>
+      </ion-col>
     </ion-row>
 
     <ion-row justify-content-center>
@@ -45,5 +47,6 @@
         </div>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 </ion-content>

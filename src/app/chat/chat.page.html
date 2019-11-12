@@ -8,7 +8,7 @@
 
     <ion-buttons slot="start">
       <ion-avatar>
-        <ion-img [src]="chat.photo"></ion-img>
+        <ion-img *ngIf="chat.photo" [src]="chat.photo"></ion-img>
         <ion-icon *ngIf="!chat.photo" name="contact"></ion-icon>
       </ion-avatar>
     </ion-buttons>
@@ -32,7 +32,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-row id="input-send">
+  <ion-row class="input-send">
       <ion-col size="10">
         <ion-input type="text" placeholder="Digite uma mensagem"></ion-input>
       </ion-col>

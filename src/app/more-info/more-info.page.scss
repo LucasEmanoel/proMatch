@@ -1,13 +1,15 @@
 ion-content {
-  --background: #fff url('../../assets/img/11854.jpg') no-repeat center center / cover;
-}
-ion-row{
-  height: 250px;
-}
-ion-item{
-  --background: transparent !important;
-}
+  --background: #fff url('../../assets/img/background2.jpg') no-repeat center center / cover;
 
-h1 {
-  color: #fe4a49;
+  ion-row{
+    height: 60vh;
+  }
+  
+  ion-item{
+    --background: transparent !important;
+  }
+  
+  h1 {
+    color: var(--ion-color-primary);
+  }
 }
