@@ -9,18 +9,21 @@
     <ion-row justify-content-center>
       <ion-col align-self-center size-xs="12">
 
-        <ion-list>
-          <ion-item *ngFor="let chat of chats" (click)="openChat(chat.uid)">
+        <ion-list lines=“none”>
+          <ion-list-header>
+            Mensagens
+          </ion-list-header>
+          <ion-item lines=“none” *ngFor="let chat of chats" (click)="openChat(chat.uid)">
             <ion-avatar>
               <ion-img *ngIf="chat.photo" [src]="chat.photo"></ion-img>
               <ion-icon *ngIf="!chat.photo" name="contact"></ion-icon>
             </ion-avatar>
             <ion-label>
-              <h3>{{chat.otherUser}}</h3>
+              <h3>{{chat.otherUser.name}}</h3>
             </ion-label>
           </ion-item>
         </ion-list>
-        
+
       </ion-col>
     </ion-row>
   </ion-grid>

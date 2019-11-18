@@ -19,7 +19,7 @@
               <ion-item>
                 <ion-label color="primary">Game</ion-label>
                 <ion-select value="any" [(ngModel)]="data.gameUID">
-                  <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}}</ion-select-option>
+                  <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}} - {{game.platform}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>

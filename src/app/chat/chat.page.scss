@@ -1,22 +1,37 @@
 ion-grid {
   ion-card {
-    max-width: 94vw;
-        
+    border-radius: 2em;
+    max-width: 85vw;
+    min-width: 16vw;
+
+    .message-date {
+      position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.6em;
+    margin: 0 1.7em;
+    }  
+     
     p {
       max-width: 100%;
+      margin-top: 1.1em;
     }
   }
+}
+
+.my-send {
+  --background: gray;
 }
 
 ion-toolbar {
   ion-title {
     margin: 0;
-    padding: 0 0.2em;
+    padding: 0 0.5em;
   }
   
   ion-avatar {
-    height: 2.7em;
-    width: 2.7em;
+    height: 3em;
+    width: 3em;
     
     ion-icon{
       width: 100%;
@@ -25,15 +40,27 @@ ion-toolbar {
   }
 }
 
-
 .input-send {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100vw;
 
-  ion-icon {
-    width: 100%;
-    height: 100%;
+  ion-input{
+    background: #E6E6E6;
+    border-radius: 1.5em;
+    margin: 0.3em;
   }
+  
+}
+
+ion-fab-button {
+  width: 71%;
+  margin-left: 0.85em;
+  height: 87%;
+}
+
+
+.toolbar-has-focus {
+  height: 45vh; 
 }

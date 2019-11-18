@@ -28,3 +28,7 @@
 .forgot-container {
   margin: 0 2vw;
 }
+
+.has-focus:focus +  .logo-container{
+  margin-top: 0;
+}

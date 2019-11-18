@@ -17,10 +17,11 @@ import { IonicSwipeAllModule } from 'ionic-swipe-all';
 import { ProfileEditPage } from './profile-edit/profile-edit.page';
 import { FormsModule } from '@angular/forms';
 import { ChatPage } from './chat/chat.page';
+import { ProfileInfoPage } from './profile-info/profile-info.page';
 
 @NgModule({
-  declarations: [AppComponent, ProfileEditPage, ChatPage],
-  entryComponents: [ ProfileEditPage, ChatPage ],
+  declarations: [AppComponent, ProfileEditPage, ChatPage, ProfileInfoPage],
+  entryComponents: [ ProfileEditPage, ChatPage, ProfileInfoPage ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

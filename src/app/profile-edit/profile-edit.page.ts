@@ -7,6 +7,7 @@ import { Game } from '../model/Game';
 import { CameraService } from '../service/camera.service';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-profile-edit',
@@ -21,10 +22,10 @@ export class ProfileEditPage implements OnInit {
   userAuth: User;
   games: Game[];
 
-  constructor(private router: Router, private dbService: DbService,
-    public toastController: ToastController, private modalCtrl: ModalController,
-    private cameraService: CameraService, private actionSheetController: ActionSheetController,
-    private camera: Camera) {
+  constructor(private router: Router, private dbService: DbService, 
+    private auth: AuthenticationService, public toastController: ToastController,
+    private modalCtrl: ModalController, private cameraService: CameraService, 
+    private actionSheetController: ActionSheetController, private camera: Camera) {
     this.initialize();
   }
 
@@ -33,10 +34,6 @@ export class ProfileEditPage implements OnInit {
 
   async initialize() {
     this.games = await this.dbService.listWithUIDs<Game>('games');
-  }
-
-  async presentActionSheet() {
-    
   }
 
   async changePhoto() {
@@ -96,7 +93,7 @@ export class ProfileEditPage implements OnInit {
   }
 
   Disconnect(){
-    
+    this.auth.logout();
   }
   
   dismiss() {

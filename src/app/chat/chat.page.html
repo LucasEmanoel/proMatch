@@ -1,43 +1,48 @@
 <ion-header no-border>
   <ion-toolbar transparent>
     <ion-buttons slot="start">
-      <ion-button (click)="dismiss()">
+      <ion-button (click)="dismissModal()">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="start">
-      <ion-avatar>
+      <ion-avatar (click)="openProfileInfo()">
         <ion-img *ngIf="chat.photo" [src]="chat.photo"></ion-img>
         <ion-icon *ngIf="!chat.photo" name="contact"></ion-icon>
       </ion-avatar>
     </ion-buttons>
-    <ion-title>{{chat.otherUser}}</ion-title>
+    <ion-title>{{chat.otherUser.name}}</ion-title>
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
+<ion-content fullscreen
+[scrollEvents]="true">
   <ion-grid fixed>
-    <ion-row justify-content-center>
+    <ion-row justify-content-center *ngFor="let message of messages">
       <ion-col align-self-center size-xs="12">
-        <ion-card class="ion-float-left">
+        <ion-card [class]="message.userSend == userAuth.uid ? 'ion-float-right my-send' : 'ion-float-left'">
           <ion-item>
-            <p>hii selenaa dsakjd sad klasm dlksajdklsamdk
-              slamdklsadmsaklmdsakldmaskldmsakldmsaklfmsaklfsaklfsakfmsaklf
-              kfsamnfklsamfsadsakdmsakda
-            </p>
+            <p>{{message.text}}</p>
+            <span class="message-date">{{message.date | date: 'HH:mm'}}</span>
           </ion-item>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-row class="input-send">
+</ion-content>
+<ion-footer  no-border class="footer-container">
+  <ion-toolbar transparent>
+    <ion-row class="input-send">
       <ion-col size="10">
-        <ion-input type="text" placeholder="Digite uma mensagem"></ion-input>
+        <ion-input class="text-container" type="text" placeholder="Digite uma mensagem" [(ngModel)]="message"></ion-input>
       </ion-col>
       <ion-col size="2">
-        <ion-icon name="paper-plane"></ion-icon>
+        <ion-fab-button color="primary" [disabled]="!message">
+          <ion-icon (click)="send()" name="paper-plane" ></ion-icon>
+        </ion-fab-button>
       </ion-col>
     </ion-row>
-</ion-content>
+  </ion-toolbar>
+</ion-footer>

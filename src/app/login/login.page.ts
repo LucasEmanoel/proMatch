@@ -10,10 +10,10 @@ import { AlertController, LoadingController } from '@ionic/angular';
   providers: [AuthenticationService]
 })
 export class LoginPage implements OnInit {
-  
+
   loading;
-  private email: string;
-  private password: string;
+  email: string;
+  password: string;
 
   constructor(private router: Router, private authService: AuthenticationService,
     private alertController: AlertController, private loadingController: LoadingController) { }
@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  async logar(){
+  async login() {
     await this.presentLoading();
     this.authService.login(this.email, this.password)
       .then(() => {
@@ -44,15 +44,18 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  goToForgotPassword(){
+  goToForgotPassword() {
     this.router.navigate(['forgot-password']);
   }
-  goToRegister(){
+
+  goToRegister() {
     this.router.navigate(['register']);
   }
-  goToRegisterProfile(){
+
+  goToRegisterProfile() {
     this.router.navigate(['register-profile']);
   }
+
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Carregando'
@@ -63,5 +66,9 @@ export class LoginPage implements OnInit {
 
   async hideLoading() {
     this.loading.dismiss();
+  }
+
+  changeElementFocus(item) {
+    item.style.marginTop = 0;
   }
 }

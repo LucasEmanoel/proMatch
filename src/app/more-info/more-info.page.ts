@@ -26,14 +26,6 @@ export class MoreInfoPage implements OnInit {
   ngOnInit() {
   }
 
-  async presentToast(msg: string) {
-    const toast = await this.toastController.create({
-      message: msg,
-      duration: 2000,
-    });
-    toast.present();
-  }
-
   async initialize(){
     this.route.queryParams.subscribe(params => {
       if (params && params.special) {
@@ -56,5 +48,13 @@ export class MoreInfoPage implements OnInit {
       this.presentToast("falha ao cadastrar.")
     });
     
+  }
+
+  async presentToast(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+    });
+    toast.present();
   }
 }

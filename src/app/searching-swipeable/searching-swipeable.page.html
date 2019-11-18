@@ -14,9 +14,9 @@
           <ion-icon *ngIf="!cards || !cards.length" name="refresh" (click)="initialize()"></ion-icon>
         </div>
 
-        <ion-card [class.liked]="card.liked" [class.disliked]="card.disliked" *ngFor="let card of cards" swipeAll
+        <ion-card  *ngFor="let card of cards" swipeAll
           (swipeleft)="swipeLeft($event)" (swiperight)="swipeRight($event)">
-          <div class="card-image">
+          <div (click)="openProfileInfo()" class="card-image" [class.liked]="card.liked" [class.disliked]="card.disliked" >
             <ion-img *ngIf="card.photo" [src]="card.photo"></ion-img>
             <ion-icon *ngIf="!card.photo" name="contact"></ion-icon>
           </div>

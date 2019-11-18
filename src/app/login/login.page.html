@@ -3,14 +3,14 @@
     <ion-row justify-content-center>
       <ion-col align-self-center size-xs="9">
 
-        <div class="logo-container">
+        <div #Item class="logo-container">
           <img src="../../assets/img/zed.png" alt="zed">
         </div>
 
         <ion-card>
           <div padding class="input-container">
             <ion-input [(ngModel)]="email" placeholder=" Email Address"></ion-input>
-            <ion-input [(ngModel)]="password" placeholder=" Senha " type="password"></ion-input>
+            <ion-input [(ngModel)]="password" (ionFocus)="changeElementFocus(Item)" placeholder=" Senha " type="password"></ion-input>
           </div>
         </ion-card>
 
@@ -19,7 +19,7 @@
         </div>
 
         <div class="button-container">
-          <ion-button [disabled]="!email || !password" color="primary" expand="block" (click)="logar()">Entrar
+          <ion-button [disabled]="!email || !password" color="primary" expand="block" (click)="login()">Entrar
           </ion-button>
         </div>
 

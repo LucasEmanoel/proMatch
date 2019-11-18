@@ -4,25 +4,21 @@
 
 
 :root {
-  ion-toolbar {
-    ion-title{
-      --color: #000 !important;
-
-    }
-  }
-  
   ion-grid {
     padding: 0;
-
-    ion-row {
-      padding: 0;
-
-      ion-col {
-        padding: 0;
-      }
-    }
   }
+  ion-row {
+    padding: 0;
+  }
+  ion-col {
+    padding: 0;
+  }
+
+  --ion-font-family: "Roboto", sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   
+  --ion-safe-area-top: 0.5em;
+  --ion-text-color: #595959;
   --ion-background-color: #F2F2F2;
   --ion-toolbar-background: #F2F2F2;
   

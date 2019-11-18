@@ -33,7 +33,7 @@ export class RegisterPage implements OnInit {
     });
     
   }
-
+  
   goToMoreInfo() {
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -42,6 +42,10 @@ export class RegisterPage implements OnInit {
     }
     this.router.navigate(['more-info'], navigationExtras);
     this.user = new User();
+  }
+
+  goToLogin() {
+    this.router.navigate(['login']);
   }
 
   async presentAlert(msg: string) {
@@ -53,8 +57,4 @@ export class RegisterPage implements OnInit {
 
     await alert.present();
   }
-  goToLogin() {
-    this.router.navigate(['login']);
-  }
-
 }
