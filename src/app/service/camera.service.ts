@@ -12,6 +12,11 @@ export class CameraService {
   async takePicture(){
     const options: CameraOptions = {
       quality: 100,
+      allowEdit: true,
+      correctOrientation:true,
+      targetWidth: 400,
+      targetHeight: 400,
+      saveToPhotoAlbum: true,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -26,6 +31,9 @@ export class CameraService {
   async pickFromGallery(){
     const options: CameraOptions = {
       quality: 100,
+      allowEdit: true,
+      targetWidth: 300,
+      targetHeight: 300,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,

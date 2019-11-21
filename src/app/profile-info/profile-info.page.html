@@ -1,48 +1,56 @@
+<ion-header translucent no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon class="back-float" (click)="dismiss()" name="arrow-back"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
 <ion-content fullscreen>
+  <div class="content">
 
-    <ion-fab vertical="top" horizontal="start" slot="fixed">
-        <ion-fab-button color="light" (click)="dismiss()">
-          <ion-icon name="arrow-back"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
+    <ion-grid fixed>
+      <ion-row justify-content-center>
+        <ion-col class="photo-container" align-self-center size-xs="12">
 
-  <ion-grid fixed>
-    <ion-row justify-content-center>
-      <ion-col class="photo-container" align-self-center size-xs="12">
+          <ion-img *ngIf="perfil.photo" [src]="perfil.photo"></ion-img>
+          <ion-icon *ngIf="!perfil.photo" name="contact"></ion-icon>
 
-        <ion-img *ngIf="perfil.photo" [src]="perfil.photo"></ion-img>
-        <ion-icon *ngIf="!perfil.photo" name="contact"></ion-icon>
+        </ion-col>
+      </ion-row>
 
-      </ion-col>
-    </ion-row>
+      <ion-row justify-content-center>
+        <ion-col class="info-container" align-self-center size-xs="11">
 
-    <ion-row justify-content-center>
-      <ion-col class="info-container" align-self-center size-xs="11">
-        
-        <ion-icon name="heart"></ion-icon>
-        <h5 *ngIf="perfil.likes">{{perfil.likes.length}}</h5>
-        <h5 *ngIf="!perfil.likes">0</h5>
-          
-        <ion-item>
-          <ion-label class="ion-text-wrap">
-            <ion-text color="medium">
-              <h3>Informações pessoais:</h3>
-            </ion-text>
-            <h2 *ngIf="perfil.game" >nome: {{perfil.name}}, game : {{perfil.game.name}} </h2>
-            <h5 *ngIf="perfil.game">plataforma : {{perfil.game.platform}}</h5>
-          </ion-label>
-        </ion-item>
+          <ion-icon name="heart"></ion-icon>
+          <h5 *ngIf="perfil.numberLikes">{{perfil.numberLikes}}</h5>
+          <h5 *ngIf="!perfil.numberLikes">likes: 0</h5>
 
-        <ion-item>
-          <ion-label class="ion-text-wrap">
-            <ion-text color="medium">
-              <h3>Descrição: </h3>
-            </ion-text>
-             <h2 class="description-container">{{perfil.description}}</h2>
-          </ion-label>
-        </ion-item>
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <ion-text color="medium">
+                <h3>Informações pessoais: </h3>
+              </ion-text>
+              <h2>nome: {{perfil.name}}</h2>
+              <div class="info-game" *ngIf="perfil.game">
+                <h5>game : {{perfil.game.name}}</h5>
+                <h5>plataforma : {{perfil.game.platform}}</h5>
+              </div>
+            </ion-label>
+          </ion-item>
 
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+          <ion-item>
+            <ion-label class="ion-text-wrap">
+              <ion-text color="medium">
+                <h3>Descrição: </h3>
+              </ion-text>
+              <h2 class="description-container">{{perfil.description}}</h2>
+            </ion-label>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

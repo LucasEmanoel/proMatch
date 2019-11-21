@@ -15,19 +15,19 @@ export class MatchesPage implements OnInit {
 
   chats: Chat[];
   users: User[];
+  emailAuth: string;
   userAuth: User;
-  consulta: string;
   loading;
 
   constructor(private auth: AuthenticationService, private dbService: DbService,
     private loadingController: LoadingController, private modalController: ModalController) {
-    this.userAuth = new User();
     this.chats = [];
-    this.consulta = this.auth.getUserEmailAuth();
-    this.getDataUserAuthentication();
+    this.users = [];
+    this.getUserAuth();
   }
 
   ngOnInit() {
+    
   }
   
   ionViewDidEnter(){
@@ -48,20 +48,19 @@ export class MatchesPage implements OnInit {
       this.users.map(user => {
         if (chat.userOneUID === this.userAuth.uid && chat.userTwoUID === user.uid) {
           chat['photo'] = user.photo || null;
-          chat['otherUser'] = user;
+          chat.otherUser = user;
         }
         if (chat.userTwoUID === this.userAuth.uid && chat.userOneUID === user.uid) {
           chat['photo'] = user.photo || null;
-          chat['otherUser'] = user;
+          chat.otherUser = user;
         }
       })
     });
-    
+
     await this.hideLoading();
   }
 
-  async openChat(uid) {
-    const chat = this.chats.find(chat => chat.uid === uid);
+  async openChat(chat) {
     const modal = await this.modalController.create({
       component: ChatPage,
       componentProps: { chat : chat }
@@ -81,7 +80,8 @@ export class MatchesPage implements OnInit {
     this.loading.dismiss();
   }
 
-  async getDataUserAuthentication() {
-    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.consulta))[0];
+  async getUserAuth() {
+    this.emailAuth = this.auth.getUserEmailAuth();
+    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0];
   }
 }

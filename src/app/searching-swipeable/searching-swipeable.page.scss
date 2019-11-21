@@ -1,3 +1,7 @@
+ion-col {
+  text-align: center;
+}
+
 .card-container {
   height: 75vh;
 
@@ -5,9 +9,10 @@
     height: 100%;
   }
   .icon-container {
+    text-align: center;
+
     ion-icon {
-      position: absolute;
-      margin: 33vh 43vw;
+      margin: 33vh 0;
     }
   }
 }
@@ -19,18 +24,22 @@ ion-card{
     width: 80vw;
     margin: 8vh 10vw;
     border-radius: 1em;
-    --background: #f4f4f8;
+    --background: #E6E6E6;
 
   ion-card-header{
     padding: 1em;
+    ion-card-title {
+      font-size: 2em;
+      color: var(--ion-color);
+    }
   }
 
   .card-image{
-    height: 58%;
-    background: lightgray;
+    background: #E6E6E6;
+    height: 75%;
   }
   .card-image ion-icon{
-    margin: 2em;
+    margin: 6em;
     width: 11em;
     height: 11em;
   } 
@@ -39,27 +48,45 @@ ion-card{
   }
 
   ion-list {
-    margin: 0 0.3em;
+    background: #E6E6E6;
+    margin: 0;
+    padding: 0;
+    p {
+      margin: 0.05em;
+    }
   }
   
 }
 
 .icon-container ion-icon {
-  font-size: 3em;
+  font-size: 3.5em;
 }
 
 .liked {
-  background-image: url('../../assets/img/like.png');
-  transition: visibility 0s linear 1000ms, opacity 1000ms;
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
+  --background: green !important;
+  
+  .card-image{
+    background: green;
+    transition: visibility 0s linear 1000ms, opacity 1000ms;
+    opacity: 0;
+    overflow: hidden;
+  }
+  ion-list {
+    background: green;
+  }
 }
 
 .disliked {
-  background-image: url('../../assets/img/dislike.png');
-  transition: visibility 0s linear 1000ms, opacity 1000ms;
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
+  --background: red !important;
+  
+  
+  .card-image{
+    background: red;
+    transition: visibility 0s linear 1000ms, opacity 1000ms;
+    opacity: 0;
+    overflow: hidden;
+  }
+  ion-list {
+    background: red;
+  }
 }

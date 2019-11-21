@@ -9,7 +9,7 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class HomePage {
 
-  constructor( private router: Router, private auth : AuthenticationService ) {
+  constructor( private router: Router) {
     
   }
   

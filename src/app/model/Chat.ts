@@ -5,5 +5,6 @@ export class Chat{
   userOneUID: string;
   userTwoUID: string;
   messages: Message[];
+  
   otherUser: any;
 }

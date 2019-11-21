@@ -1,4 +1,10 @@
 <ion-content fullscreen>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="editProfile()">
+        <ion-icon class="edit-float"  name="brush"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
   <ion-grid fixed>
     <ion-row justify-content-center>
       <ion-col class="photo-container" align-self-center size-xs="12">
@@ -10,19 +16,22 @@
     </ion-row>
 
     <ion-row justify-content-center>
-      <ion-col class="info-container" align-self-center size-xs="11">
-        
+      <ion-col class="info-container" align-self-center size-xs="12">
+
         <ion-icon name="heart"></ion-icon>
-        <h5 *ngIf="userAuth.likes">{{userAuth.likes.length}}</h5>
-        <h5 *ngIf="!userAuth.likes">0</h5>
-          
+        <h5 *ngIf="userAuth.numberLikes">{{userAuth.numberLikes}}</h5>
+        <h5 *ngIf="!userAuth.numberLikes">likes: 0</h5>
+
         <ion-item>
           <ion-label class="ion-text-wrap">
             <ion-text color="medium">
               <h3>Informações pessoais: </h3>
             </ion-text>
-            <h2 *ngIf="userAuth.game">nome: {{userAuth.name}}, game : {{userAuth.game.name}} </h2>
-            <h5 *ngIf="userAuth.game">plataforma : {{userAuth.game.platform}}</h5>
+            <h2>nome: {{userAuth.name}}</h2>
+            <div class="info-game" *ngIf="userAuth.game">
+              <h5>game : {{userAuth.game.name}}</h5>
+              <h5>plataforma : {{userAuth.game.platform}}</h5>
+            </div>
           </ion-label>
         </ion-item>
 
@@ -31,18 +40,11 @@
             <ion-text color="medium">
               <h3>Descrição: </h3>
             </ion-text>
-             <h2 class="description-container">{{userAuth.description}}</h2>
+            <h2 class="description-container">{{userAuth.description}}</h2>
           </ion-label>
         </ion-item>
 
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon (click)="editProfile()" name="brush"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
 </ion-content>

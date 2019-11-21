@@ -20,7 +20,12 @@
   --ion-safe-area-top: 0.5em;
   --ion-text-color: #595959;
   --ion-background-color: #F2F2F2;
-  --ion-toolbar-background: #F2F2F2;
+  //--ion-toolbar-background: #F2F2F2;
+
+  ion-toolbar {
+    --background: transparent;
+    //--ion-color-base: transparent !important;
+  }
   
   /** primary **/
   --ion-color-primary: #fe4a49;

@@ -11,20 +11,20 @@ import { Router } from '@angular/router';
 })
 export class TabsPage implements OnInit {
   
-  consulta: string;
+  emailAuth: string;
   user: User;
 
   constructor(private auth: AuthenticationService, private dbService: DbService,
     private router: Router) { 
 
     this.user = new User();
-    this.consulta = this.auth.getUserEmailAuth();
     this.getDataUserAuthentication();
 
   }
   
   async getDataUserAuthentication() {
-    this.user = (await this.dbService.search<User>('usuarios', 'email', this.consulta))[0];
+    this.emailAuth = this.auth.getUserEmailAuth();
+    this.user = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0];
     if(this.user.isAdmin){
       this.router.navigate(['tabs/users']);
     } 

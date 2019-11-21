@@ -33,11 +33,12 @@
             <ion-input [(ngModel)]="game.description" required type="text"></ion-input>
           </ion-item>
         </div>
-
-        <div padding class="button-container">
-          <ion-button color="primary" expand="block" (click)="register()">Salvar</ion-button>
-        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button color="primary" expand="block" (click)="register()">Salvar</ion-button>
+  </ion-toolbar>
+</ion-footer>

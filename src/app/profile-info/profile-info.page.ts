@@ -13,12 +13,12 @@ export class ProfileInfoPage implements OnInit {
 
   @Input()
   perfil: User;
+  
   games: Game[];
   loading;
 
   constructor(private modalCtrl: ModalController, private dbService: DbService,
      private loadingController: LoadingController) {
-    console.log(this.perfil);
     this.initialize();
     
    }

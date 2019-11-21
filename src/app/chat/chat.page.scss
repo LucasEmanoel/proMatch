@@ -4,6 +4,11 @@ ion-grid {
     max-width: 85vw;
     min-width: 16vw;
 
+    ion-item{
+      --background: transparent;
+      --color: black;
+    }
+
     .message-date {
       position: absolute;
     bottom: 0;
@@ -20,7 +25,7 @@ ion-grid {
 }
 
 .my-send {
-  --background: gray;
+  --background: #E6E6E6;
 }
 
 ion-toolbar {
@@ -49,7 +54,24 @@ ion-toolbar {
   ion-input{
     background: #E6E6E6;
     border-radius: 1.5em;
-    margin: 0.3em;
+    height: 3em;
+    margin-bottom: 0.5em;
+    width: 95vw;
+    margin-left: 2.5vw;
+
+    input {
+      max-width: 85% !important;
+    }
+  }
+  
+  ion-icon {
+    position: absolute;
+    z-index: 9999;
+    color: var(--ion-color-primary);
+    height: 2.7em;
+    width: 2.7em;
+    right: 0;
+    margin: 0.20em 1.5em;
   }
   
 }
@@ -57,10 +79,10 @@ ion-toolbar {
 ion-fab-button {
   width: 71%;
   margin-left: 0.85em;
-  height: 87%;
+  height: 72%;
+  margin-top: 0.5em;
 }
 
-
 .toolbar-has-focus {
-  height: 45vh; 
+  height: 44.5vh; 
 }

@@ -20,8 +20,8 @@
       <ion-col class="logo-container" align-self-center size-xs="11">
 
         <ion-avatar>
-          <ion-img *ngIf="userAuth.photo" [src]="userAuth.photo"></ion-img>
-          <ion-icon *ngIf="!userAuth.photo" name="contact"></ion-icon>
+          <ion-img *ngIf="perfil.photo" [src]="perfil.photo"></ion-img>
+          <ion-icon *ngIf="!perfil.photo" name="contact"></ion-icon>
         </ion-avatar>
         <a (click)="changePhoto()">
           <p>Mudar Foto</p>
@@ -35,25 +35,27 @@
 
         <ion-item>
           <ion-label position="stacked">Nome</ion-label>
-          <ion-input required type="text" [(ngModel)]="userAuth.name"></ion-input>
+          <ion-input required type="text" [(ngModel)]="perfil.name"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label>Game</ion-label>
-          <ion-select value="any" [(ngModel)]="userAuth.gameUID">
+          <ion-select value="any" [(ngModel)]="perfil.gameUID">
             <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}} - {{game.platform}} </ion-select-option>
           </ion-select>
         </ion-item>
 
         <ion-item>
           <ion-label position="stacked">Descrição</ion-label>
-          <ion-textarea maxlength="100" rows="12" [(ngModel)]="userAuth.description"></ion-textarea>
+          <ion-textarea maxlength="100" rows="4" [(ngModel)]="perfil.description"></ion-textarea>
         </ion-item>
-        <ion-button (click)="Disconnect()">
-            Logout
-        </ion-button>
       </ion-col>
 
     </ion-row>
   </ion-grid>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="Disconnect()">
+        <ion-icon name="walk"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

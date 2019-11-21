@@ -7,8 +7,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AuthenticationService {
 
   constructor(private afAuth: AngularFireAuth) { }
-
-  login(email: string, password: string) {
+  
+  async login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
@@ -18,6 +18,10 @@ export class AuthenticationService {
 
   register(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  }
+  
+  sendResetPassword(email: string){
+    return this.afAuth.auth.sendPasswordResetEmail(email)
   }
 
   getUserEmailAuth() {

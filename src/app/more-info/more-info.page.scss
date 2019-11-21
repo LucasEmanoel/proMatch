@@ -2,14 +2,26 @@ ion-content {
   --background: #fff url('../../assets/img/background2.jpg') no-repeat center center / cover;
 
   ion-row{
-    height: 60vh;
+    height: 50vh;
   }
   
   ion-item{
     --background: transparent !important;
+    margin-top: 35vh;
+    ion-input{
+      color: black;
+    }
   }
   
   h1 {
     color: var(--ion-color-primary);
   }
+}
+.item-has-focus {
+  margin-top: 0 !important;
+}
+
+.item-button {
+  font-size: 1.2em;
+
 }

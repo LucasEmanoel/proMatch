@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,9 +9,21 @@ import { Router } from '@angular/router';
 })
 export class ForgotPasswordPage implements OnInit {
 
-  constructor(private router: Router  ) { }
+  email: string;
+  resetPassword: boolean;
+
+  constructor(private router: Router, private auth: AuthenticationService  ) { }
 
   ngOnInit() {
+  }
+
+  resetPasswordByEmail(){
+    if(this.email){
+      this.auth.sendResetPassword(this.email).then(() => {
+        this.resetPassword = true;
+      })
+    }
+    
   }
 
   backLogin(){

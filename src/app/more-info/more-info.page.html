@@ -1,28 +1,25 @@
 <ion-content fullscreen padding scroll-y="false">
   <ion-slides>
-    
+
     <ion-slide>
       <ion-grid fixed>
 
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
-            <div class="logo-container">
-              <h1>Informe o game que voçê joga!!</h1>
-              <ion-icon slot="end" name="arrow-forward" color="primary"></ion-icon>
-            </div>
+            <h1>Informe o game que voçê joga!!</h1>
+            <ion-icon slot="end" name="arrow-forward" color="primary"></ion-icon>
           </ion-col>
         </ion-row>
 
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
-            <div class="list-container">
-              <ion-item>
-                <ion-label color="primary">Game</ion-label>
-                <ion-select value="any" [(ngModel)]="data.gameUID">
-                  <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}} - {{game.platform}}</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </div>
+            <ion-item>
+              <ion-label color="primary">Game</ion-label>
+              <ion-select value="any" [(ngModel)]="data.gameUID">
+                <ion-select-option value="{{game.uid}}" *ngFor="let game of games">{{game.name}} - {{game.platform}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
           </ion-col>
         </ion-row>
 
@@ -33,23 +30,15 @@
 
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
-            <div class="logo-container">
-              <h1>Faça uma breve Descricao sobre voçê!!</h1>
-              <ion-icon slot="end" name="arrow-forward" color="primary"></ion-icon>
-            </div>
+            <h1>Faça uma breve Descricao sobre voçê!!</h1>
+            <ion-icon slot="end" name="arrow-forward" color="primary"></ion-icon>
           </ion-col>
         </ion-row>
 
-        <ion-row justify-content-center>
-          <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
-            <div class="list-container">
-              <ion-item>
-                <ion-label position="stacked" color="primary">Descrição</ion-label>
-                <ion-input maxlength="100" type="text" [(ngModel)]="data.description"></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-        </ion-row>
+        <ion-item class="item-description">
+          <ion-label position="stacked" color="primary">Descrição</ion-label>
+          <ion-input maxlength="100" type="text" [(ngModel)]="data.description"></ion-input>
+        </ion-item>
 
       </ion-grid>
     </ion-slide>
@@ -59,24 +48,20 @@
 
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
-            <div class="logo-container">
-              <img src="../../assets/img/teemo.png" alt="teemo">
-              <h1>Obrigado por sua Colaboração!!</h1>
-            </div>
+            <img src="../../assets/img/teemo.png" alt="teemo">
+            <h1>Obrigado por sua Colaboração!!</h1>
           </ion-col>
         </ion-row>
 
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="10">
-            <div class="button-container">
-              <ion-button fill="clear" (click)="goToHome()" color="primary">Salvar
-                <ion-icon slot="end" name="arrow-forward" color="primary"></ion-icon>
-              </ion-button>
-            </div>
+            <ion-button class="item-button" fill="clear" (click)="goToHome()" color="primary">Salvar
+              <ion-icon slot="end" name="arrow-forward" color="primary"></ion-icon>
+            </ion-button>
           </ion-col>
         </ion-row>
 
-      </ion-grid>   
+      </ion-grid>
     </ion-slide>
 
   </ion-slides>

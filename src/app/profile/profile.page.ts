@@ -14,7 +14,7 @@ import { Game } from '../model/Game';
 })
 export class ProfilePage implements OnInit {
 
-  consulta: string;
+  emailAuth: string;
   userAuth: User;
   games: Game[];
   loading;
@@ -23,17 +23,12 @@ export class ProfilePage implements OnInit {
     public modalController: ModalController, private loadingController: LoadingController) {
     this.games = [];
     this.userAuth = new User;
-    this.consulta = this.auth.getUserEmailAuth();
-    this.getDataUserAuthentication();
+    this.getUserAuth();
     this.initialize();
 
   }
 
   ngOnInit() {
-  }
-
-  async getDataUserAuthentication() {
-    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.consulta))[0];
   }
 
   async initialize() {
@@ -42,7 +37,6 @@ export class ProfilePage implements OnInit {
     this.games = await this.dbService.listWithUIDs<Game>('games');
 
     const game = this.games.find(g => g.uid === this.userAuth.gameUID);
-    console.log(game);
     
     this.userAuth['game'] = game;
 
@@ -52,7 +46,7 @@ export class ProfilePage implements OnInit {
   async editProfile() {
     const modal = await this.modalController.create({
       component: ProfileEditPage,
-      componentProps: { userAuth: this.userAuth }
+      componentProps: { perfil : this.userAuth }
     });
     return await modal.present();
   }
@@ -69,4 +63,8 @@ export class ProfilePage implements OnInit {
     this.loading.dismiss();
   }
 
+  async getUserAuth() {
+    this.emailAuth = this.auth.getUserEmailAuth();
+    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0];
+  }
 }

@@ -7,12 +7,14 @@ import { Game } from '../model/Game';
 import { AuthenticationService } from '../service/authentication.service';
 import { Chat } from '../model/Chat';
 import { ProfileInfoPage } from '../profile-info/profile-info.page';
+import { NotificationService } from '../service/notification.service';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-searching-swipeable',
   templateUrl: './searching-swipeable.page.html',
   styleUrls: ['./searching-swipeable.page.scss'],
-  providers: [DbService]
+  providers: [DbService, NotificationService, LocalNotifications]
 })
 export class SearchingSwipeablePage implements OnInit {
 
@@ -26,10 +28,8 @@ export class SearchingSwipeablePage implements OnInit {
 
   constructor(private dbService: DbService, private router: Router,
     private loadingController: LoadingController, private auth: AuthenticationService,
-    private modalController: ModalController) {
-    this.userAuth = new User();
-    this.emailAuth = this.auth.getUserEmailAuth();
-    this.getDataUserAuthentication();
+    private modalController: ModalController, private notification : NotificationService) {
+    this.getUserAuth();
     this.initialize();
 
   }
@@ -98,13 +98,22 @@ export class SearchingSwipeablePage implements OnInit {
 
       if (like) {
         this.userAuth.likes.push(removedCard.uid);
+        if(!removedCard.numberLikes) {
+          removedCard.numberLikes = 0;
+        }
+        removedCard.numberLikes = removedCard.numberLikes + 1; 
+        console.log(removedCard);
+        
         await this.dbService.update('usuarios', this.userAuth.uid, { likes: this.userAuth.likes });
+        await this.dbService.update('usuarios', removedCard.uid, { numberLikes: removedCard.numberLikes });
+
         removedCard.likes.forEach(async like => {
           if (like === this.userAuth.uid) {
             const chat = new Chat();
             chat.userOneUID = this.userAuth.uid;
             chat.userTwoUID = removedCard.uid;
             await this.dbService.insertInList('chats', chat);
+            this.notification.generateNotificationMatch(removedCard.name);
           }
         });
       } else {
@@ -114,9 +123,7 @@ export class SearchingSwipeablePage implements OnInit {
     }, 1000);
   }
 
-  async getDataUserAuthentication() {
-    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0];
-  }
+  
   
   async openProfileInfo() {
     const card = this.cards[this.cards.length - 1];
@@ -129,7 +136,7 @@ export class SearchingSwipeablePage implements OnInit {
 
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Carregando'
+      message: 'Carregando...'
     });
     await this.loading.present();
 
@@ -137,5 +144,10 @@ export class SearchingSwipeablePage implements OnInit {
 
   async hideLoading() {
     this.loading.dismiss();
+  }
+
+  async getUserAuth() {
+    this.emailAuth = this.auth.getUserEmailAuth();
+    this.userAuth = (await this.dbService.search<User>('usuarios', 'email', this.emailAuth))[0];
   }
 }

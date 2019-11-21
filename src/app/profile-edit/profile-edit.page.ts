@@ -19,17 +19,18 @@ export class ProfileEditPage implements OnInit {
 
 
   @Input()
-  userAuth: User;
+  perfil: User;
   games: Game[];
 
   constructor(private router: Router, private dbService: DbService, 
     private auth: AuthenticationService, public toastController: ToastController,
     private modalCtrl: ModalController, private cameraService: CameraService, 
     private actionSheetController: ActionSheetController, private camera: Camera) {
-    this.initialize();
+    
   }
 
   ngOnInit() {
+    this.initialize();
   }
 
   async initialize() {
@@ -45,7 +46,7 @@ export class ProfileEditPage implements OnInit {
           icon: 'camera',
           handler: () => {
             this.cameraService.takePicture().then((foto) => {
-              this.userAuth.photo = foto;
+              this.perfil.photo = foto;
             }    
             );
           }
@@ -55,7 +56,7 @@ export class ProfileEditPage implements OnInit {
           icon: 'image',
           handler: () => {
             this.cameraService.pickFromGallery().then((foto) => {
-              this.userAuth.photo = foto;
+              this.perfil.photo = foto;
             }
             );
           }
@@ -74,12 +75,12 @@ export class ProfileEditPage implements OnInit {
   }
 
   async updateUser() {
-    await this.dbService.update('usuarios', this.userAuth.uid,
+    await this.dbService.update('usuarios', this.perfil.uid,
       {
-        name: this.userAuth.name,
-        description: this.userAuth.description,
-        gameUID: this.userAuth.gameUID,
-        photo: this.userAuth.photo || null
+        name: this.perfil.name,
+        description: this.perfil.description,
+        gameUID: this.perfil.gameUID,
+        photo: this.perfil.photo || null
       })
       .then(() => {
         this.presentToast("editado com sucesso.")
@@ -94,6 +95,8 @@ export class ProfileEditPage implements OnInit {
 
   Disconnect(){
     this.auth.logout();
+    this.dismiss();
+    this.router.navigate(['login']);
   }
   
   dismiss() {
