@@ -36,10 +36,7 @@ export class ProfileInfoPage implements OnInit {
     await this.presentLoading();
 
     this.games = await this.dbService.listWithUIDs<Game>('games');
-
     const game = this.games.find(g => g.uid === this.perfil.gameUID);
-    console.log(game);
-    
     this.perfil['game'] = game;
 
     await this.hideLoading();

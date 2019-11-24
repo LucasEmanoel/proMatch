@@ -37,6 +37,16 @@ ion-card{
   .card-image{
     background: #E6E6E6;
     height: 75%;
+    
+    img {
+      position: absolute;
+      top: 1em;
+      left: 0;
+      opacity: 0;
+      height: 16vh;
+      width: 35vw;
+      transform: rotate(-45deg);
+    }
   }
   .card-image ion-icon{
     margin: 6em;
@@ -70,6 +80,9 @@ ion-card{
     transition: visibility 0s linear 1000ms, opacity 1000ms;
     opacity: 0;
     overflow: hidden;
+    #like-text {
+      opacity: 1;
+    }
   }
   ion-list {
     background: green;
@@ -79,12 +92,14 @@ ion-card{
 .disliked {
   --background: red !important;
   
-  
   .card-image{
     background: red;
     transition: visibility 0s linear 1000ms, opacity 1000ms;
     opacity: 0;
     overflow: hidden;
+    #dislike-text {
+      opacity: 1;
+    }
   }
   ion-list {
     background: red;

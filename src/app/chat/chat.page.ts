@@ -37,10 +37,11 @@ export class ChatPage implements OnInit {
   }
 
   ngOnInit() {
+    this.initialize();
   }
 
   ionViewDidEnter() {
-    this.initialize();
+
     this.ScrollToBottom();
   }
 
@@ -55,13 +56,11 @@ export class ChatPage implements OnInit {
 
     await this.dbService.listAndWatch<Message>(`chats/${this.chat.uid}/messages`)
       .subscribe(newList => {
-        if(this.messages){
-          if (this.messages.length < newList.length) {
-              if (this.userAuth.uid !== newList[newList.length - 1].userSend) {
-                titulo = this.chat.otherUser.name;
-                text = newList[newList.length - 1].text;
-                this.notification.generateNotificationMessage(titulo, text);
-              }
+        if (this.messages) {
+          if (this.messages.length < newList.length && this.userAuth.uid !== newList[newList.length - 1].userSend) {
+            titulo = this.chat.otherUser.name;
+            text = newList[newList.length - 1].text;
+            this.notification.generateNotificationMessage(titulo, text);
           }
         }
         this.messages = newList;

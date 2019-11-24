@@ -19,6 +19,8 @@
           <div (click)="openProfileInfo()" class="card-image" >
             <ion-img *ngIf="card.photo" [src]="card.photo"></ion-img>
             <ion-icon *ngIf="!card.photo" name="contact"></ion-icon>
+            <img id="dislike-text" src="../../assets/img/dislike.png" alt="dislike">
+            <img id="like-text" src="../../assets/img/like.png" alt="like">
           </div>
 
           <ion-card-header>

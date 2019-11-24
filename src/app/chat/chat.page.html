@@ -1,5 +1,5 @@
 <ion-header no-border>
-  <ion-toolbar transparent>
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="dismissModal()">
         <ion-icon name="arrow-back"></ion-icon>
@@ -17,7 +17,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen [scrollEvents]="true">
+<ion-content [scrollEvents]="true">
   <ion-grid fixed>
     <ion-row justify-content-center *ngFor="let message of messages">
       <ion-col align-self-center size-xs="12">
@@ -34,10 +34,14 @@
 <ion-footer no-border class="footer-container">
   <ion-toolbar transparent>
     <ion-row class="input-send">
-      <ion-col size="12">
-        <ion-icon *ngIf="message" (click)="send()" name="paper-plane"></ion-icon>
+      <ion-col size="10">
         <ion-input class="text-container" type="text" placeholder="Digite uma mensagem..." [(ngModel)]="message">
         </ion-input>
+      </ion-col>
+      <ion-col size="2">
+          <ion-fab-button (click)="send()" color="primary" [disabled]="!message">
+              <ion-icon  name="paper-plane" ></ion-icon>
+            </ion-fab-button>
       </ion-col>
     </ion-row>
   </ion-toolbar>
